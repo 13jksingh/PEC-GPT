@@ -5,9 +5,21 @@ import useSlider from "../../hooks/useSlider";
 import PartCard from "../../components/PartCard";
 import FlexBetween from "../../components/FlexBetween";
 import { Box, useMediaQuery } from "@mui/material";
+import CheckBoxGroup from "../../components/CheckBoxGroup";
 
 const ManuCatalog = () => {
   const [data, setData] = useState([]);
+
+  //checkbox states
+  const partNameList = {
+    "Landing Gear": true,
+    Engine: true,
+    Avionics: true,
+    Fuselage: true,
+    Wing: true,
+  };
+  const [partName, setPartName] = useState(partNameList);
+
   const { isLoading, error, sendRequest } = useGet(
     `${process.env.REACT_APP_BACKEND}/api/v1/data`
   );
@@ -33,13 +45,19 @@ const ManuCatalog = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: mobile ? "column" : "row" }}>
-      <FlexBetween
+      <Box
         width={mobile ? "100%" : "30%"}
         margin="1rem"
         borderShadow={2}
       >
-
-      </FlexBetween>
+        <CheckBoxGroup
+          state={partName}
+          setState={setPartName}
+          label="PART NAME"
+          errorText="select alteast one"
+          items={partNameList}
+        />
+      </Box>
       <FlexBetween flexDirection="column" marginRight="1rem" width="100%">
         {data.map((item) => (
           <PartCard data={item} />
