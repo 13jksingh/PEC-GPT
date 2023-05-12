@@ -14,33 +14,48 @@ import {
 function createData(name, value) {
   return { name, value };
 }
-const rows = [
-  createData('Frozen yoghurt', 159),
-  createData('Ice cream sandwich', 237),
-  createData('Eclair', 262),
-  createData('Cupcake', 305),
-  createData('Gingerbread', 356),
-];
 
-const data = {
-  "Part Name": "part name",
-  "Material Composition": "Aluminium",
-  "Age (years)": "1",
-  "Condition": "used",
-  "Location": "india",
-  "Manufacturer": "aero",
-  "Aircraft Model": "boeng 69",
-  "Potential Use Cases": "dildo",
-  "Remanufacturing Potential": "45",
-  "Renewable Material Content (%)": "2",
-  "Carbon Footprint Saved (kg CO2e)": "2",
-  "Water Usage Saved (liters)": "21",
-  "Landfill Waste Saved (kg)": "34",
-  "Energy Consumption Saved (kWh)": "2",
-  "Toxicity Score Difference": "4",
-  "Remanufacturing Potential (%)": "3",
-  "Life Cycle Assessment Score": "6"
-}
+const basicDetails = [
+  'Part Name',	
+  'Material Composition',
+  'Age (years)',
+  'Condition',	
+  'Location'	,
+  'Manufacturer',	
+  'Aircraft Model',	
+  'Potential Use Cases'
+]
+const newPartDetail = [
+  'New Parts Carbon Footprint (kg CO2e)',
+  'Water Usage - New Parts (liters)'	,
+  'Landfill Waste - New Parts (kg)'	,
+  'Energy Consumption - New Parts (kWh)'	,
+  'Toxicity Score - New Parts'	,
+]
+const recycPartDetail = [
+  'Recycled Parts Carbon Footprint (kg CO2e)'	,
+  'Water Usage - Recycled Parts (liters)'	,
+  'Landfill Waste - Recycled Parts (kg)'	,
+  'Energy Consumption - Recycled Parts (kWh)'	,
+  'Toxicity Score - Recycled Parts'	,
+
+]
+const BenfitTable = [
+  'Recycling Rate (%)'	,
+  'Remanufacturing Potential'	,
+  'Life Cycle Assessment'	,
+  'Renewable Material Content (%)'	,
+  'Carbon Footprint Saved (kg CO2e)'	,
+  'Water Usage Saved (liters)'	,
+  'Landfill Waste Saved (kg)'	,
+  'Energy Consumption Saved (kWh)'	,
+  'Toxicity Score Difference',
+  'Remanufacturing Potential (%)'	,
+  'Life Cycle Assessment Score'
+]
+
+// const rows = columns.map(x=>createData(x,0))
+
 
 const ManuPart = () => {
   return (
@@ -94,8 +109,18 @@ const ManuPart = () => {
           </Grid>
         </div>
       </div>
-      <TablePart rows={rows} />
-      <TablePart rows={rows} />
+      <TablePart rows={
+        basicDetails.map(x=>createData(x,0))
+      } title="Basic Details"/>
+      <TablePart rows={
+        BenfitTable.map(x=>createData(x,0))
+      } title="Overall Benifit"/>
+      <TablePart rows={
+        newPartDetail.map(x=>createData(x,0))
+      } title="New Part Data"/>
+      <TablePart rows={
+        recycPartDetail.map(x=>createData(x,0))
+      } title="Recycle Part Data"/>
     </div>
   )
 }

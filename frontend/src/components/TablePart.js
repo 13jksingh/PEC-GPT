@@ -9,11 +9,11 @@ import Paper from '@mui/material/Paper';
 
 const TablePart = (props) => {
   return (
-    <TableContainer component={Paper} style={{width:"45%",display:"inline-block",paddingRight:"5px"}}>
+    <TableContainer component={Paper} style={{width:"45%",display:"inline-block",paddingRight:"5px" , verticalAlign:"top"}}>
       <Table  aria-label="simple table">
         <TableHead>
           <TableRow style={{backgroundColor:"#e4ebe5"}}>
-            <TableCell>Data</TableCell>
+            <TableCell>{props.title}</TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
