@@ -55,9 +55,9 @@ exports.request = (req, res) => {
             "<p>Your Data has been requested on our website. Thank you for using AeroConnect!</p>" +
             "<p>Below is the information you have requested:</p>" +
             "<ul>" +
-            `<li>Part Name: ${data.partName}</li>` +
-            `<li>Material Composition: ${data.materialComposition}</li>` +
-            `<li>Age (years): ${data.age}</li>` +
+            `<li>Part Name: ${data['Part Name']}</li>` +
+            `<li>Material Composition: ${data.['Material Composition']}</li>` +
+            `<li>Age (years): ${data.['Age (years)']}</li>` +
             "</ul>" +
             `<p>Please click on the following link to verify your email address:</p><p>http://localhost:8000/complete/${dataID}/${token}</p>`,
         };
@@ -148,6 +148,32 @@ exports.createData = (req, res) => {
       
             res.send(data);
           }
+    });
+  };
+  
+  exports.complete = (req, res) => {
+    const dataID = req.params.dataID;
+    const token = req.params.token;
+  
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(401).send({ message: 'Invalid token' });
+      }
+  
+      const email = decoded.email;
+  
+      Data.updateStatus(dataID, 'completed', (err, data) => {
+        if (err) {
+          if (err.message === 'Data not found') {
+            res.status(404).send({ message: `Data with id ${dataID} not found.` });
+          } else {
+            res.status(500).send({ message: `Error updating Data with id ${dataID}` });
+          }
+        } else {
+          console.log(email);
+          res.send({ message: `Your request for the product has been completed.` });
+        }
+      });
     });
   };
   

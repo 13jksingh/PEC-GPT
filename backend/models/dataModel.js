@@ -48,21 +48,36 @@ class Data {
     });
   }
 
-    static request(dataID, status, result) {
-      connection.query(
-        "UPDATE data SET status = ? WHERE dataID = ?",
-        [status, dataID],
-        (err, res) => {
-          if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-          }
-          console.log("updated data: ", { dataID: dataID, status: status });
-          result(null, { dataID: dataID, status: status });
+  static request(dataID, status, result) {
+    connection.query(
+      "UPDATE data SET status = ? WHERE dataID = ?",
+      [status, dataID],
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
         }
-      );
-    }
+  
+        connection.query(
+            "SELECT `Part Name`, `Material Composition`, `Age (years)` FROM data WHERE dataID = ?",
+
+          [dataID],
+          (err, res) => {
+            if (err) {
+              console.log("error: ", err);
+              result(err, null);
+              return;
+            }
+  
+            console.log("updated data: ", res[0]);
+            result(null, res[0]);
+          }
+        );
+      }
+    );
+  }
+  
   
   
   
@@ -98,6 +113,23 @@ class Data {
       result(null, { id: res.insertId, ...data });
     });
   }
+  static updateStatus(dataID, status, result) {
+    connection.query(
+      "UPDATE data SET status = ? WHERE dataID = ?",
+      [status, dataID],
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+        console.log("updated data: ", { dataID: dataID, status: status });
+        result(null, { dataID: dataID, status: status });
+      }
+    );
+  }
 }
+
+
 
 module.exports = Data;
