@@ -16,7 +16,6 @@ const DropMenuGroup = ({
         value={menuValue}
         label={menuLabel}
         onChange={menuChangeHandler}
-        placeholder={menuItems[0].value}
       >
         {menuItems.map((item,indx) => (
           <MenuItem key={indx} value={item.value}>

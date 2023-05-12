@@ -16,8 +16,10 @@ const Navbar = (type) => {
   const authObject = useAuthContext();
   const logoutHandler = authObject.logoutHandler;
   const authName = authObject.authState.username;
+  const header=authObject.authState.userType;
 
-  const header = type === "manu" ? "ManuFacturer" : "Recycle";
+  console.log(authObject.authState)
+
   return (
     <AppBar
       position="static"
