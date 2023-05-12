@@ -48,6 +48,7 @@ const PartCard = () => {
         marginLeft: "3rem",
         marginRight: "3rem",
         height: "10rem",
+        marginTop:"2rem"
       }}
     >
       <CardActionArea

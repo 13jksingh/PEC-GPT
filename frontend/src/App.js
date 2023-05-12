@@ -8,6 +8,8 @@ import Login from "./scenes/Login";
 import Signup from "./scenes/Signup";
 import Landing from "./scenes/Landing";
 import ErrorPage from "./scenes/Error";
+import NewPart from "./scenes/NewPart";
+import Requests from "./scenes/Requests";
 
 import ManuDashboard from "./scenes/Manu/ManuDashboard";
 import ManuCatalaog from "./scenes/Manu/ManuCatalog";
@@ -58,9 +60,11 @@ const App = () => {
           <Route path="" element={<ManuDashboard />} />
           <Route path="catalog" element={<ManuCatalaog />} />
           <Route path="history" element={<ManuHistory />} />
-          <Route path="part" element={<ManuPart/>}/>
+          <Route path="part" element={<ManuPart />} />
+          <Route path="requests" element={<Requests />} />
+          <Route path="addnew" element={<NewPart />} />
         </Route>
-        
+
         <Route
           path="/rec"
           element={
@@ -72,7 +76,7 @@ const App = () => {
           <Route path="" element={<RecDashboard />} />
           <Route path="catalog" element={<RecCatalog />} />
           <Route path="history" element={<RecHistory />} />
-          <Route path="part" element={<RecPart/>}/>
+          <Route path="part" element={<RecPart />} />
         </Route>
       </Routes>
     </ThemeProvider>
