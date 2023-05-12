@@ -32,10 +32,10 @@ exports.login = (req, res) => {
               res.status(401).send({
                 message: "Authentication failed. Invalid email or password.",
               });
-            // } else if (!data.verified) {
-            //   res.status(401).send({
-            //     message: "Authentication failed. Email not verified.",
-            //   });
+            } else if (!data.verified) {
+              res.status(401).send({
+                message: "Authentication failed. Email not verified.",
+              });
             } else {
               const token = jwt.sign(
                 { id: data.id, email: data.email },

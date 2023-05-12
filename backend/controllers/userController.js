@@ -64,3 +64,18 @@ exports.create = (req, res) => {
     }
   });
 };
+
+exports.verifyEmail = (req, res) => {
+    const token = req.params.token;
+    User.verifyEmail(token, (err, data) => {
+      if (err) {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while verifying the email.",
+        });
+      } else {
+        res.send(data);
+      }
+    });
+  };
+  

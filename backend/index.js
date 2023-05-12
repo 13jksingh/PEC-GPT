@@ -55,6 +55,8 @@ const authenticateToken = (req, res, next) => {
 
 app.use("/api/v1/users", userRoute);
 
+app.get("/verify-email/:token", userController.verifyEmail);
+
 const port = 8000;
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);
