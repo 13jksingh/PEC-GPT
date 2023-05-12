@@ -36,7 +36,7 @@ const Login = () => {
   } = useInput(
     "",
     (val) => val.match("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
-    "enter a valid email"
+    "Enter a valid email"
   );
 
   const {
@@ -47,7 +47,7 @@ const Login = () => {
     valError: passwordError,
     touched: passwordTouched,
     errortext: passwordErrorText,
-  } = useInput("", (val) => val.length > 0, "size >0");
+  } = useInput("", (val) => val.length > 0, "Enter a valid password");
 
   const { isLoading, error, sendRequest } = usePost();
 

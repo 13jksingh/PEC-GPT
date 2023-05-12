@@ -33,7 +33,7 @@ const Signup = () => {
     valError: firstNameError,
     touched: firstNameTouched,
     errortext: firstNameErrorText,
-  } = useInput("", (val) => val.length > 0, ">0");
+  } = useInput("", (val) => val.length > 0, "Enter your first name");
 
   const {
     val: lastName,
@@ -43,7 +43,7 @@ const Signup = () => {
     valError: lastNameError,
     touched: lastNameTouched,
     errortext: lastNameErrorText,
-  } = useInput("", (val) => val.length > 0, "enter a valid email");
+  } = useInput("", (val) => val.length > 0, "Enter your last name");
 
   const {
     val: email,
@@ -56,7 +56,7 @@ const Signup = () => {
   } = useInput(
     "",
     (val) => val.match("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
-    "enter a valid email"
+    "Enter a valid email"
   );
 
   const {
@@ -67,7 +67,7 @@ const Signup = () => {
     valError: passwordError,
     touched: passwordTouched,
     errortext: passwordErrorText,
-  } = useInput("", (val) => val.length > 0, "size >0");
+  } = useInput("", (val) => val.length > 0, "Enter a valid password");
 
   const { isLoading, error, sendRequest } = usePost();
 
@@ -132,7 +132,7 @@ const Signup = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign Up
           </Typography>
           <Box
             component="form"
@@ -168,7 +168,6 @@ const Signup = () => {
               id="last name"
               label="Last Name"
               name="last name"
-              autoFocus
               value={lastName}
               onChange={lastNameChange}
               onBlur={lastNameBlur}
@@ -183,7 +182,6 @@ const Signup = () => {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
               value={email}
               onChange={emailChange}
               onBlur={emailBlur}
@@ -209,7 +207,7 @@ const Signup = () => {
               menuValue={menuValue}
               menuChangeHandler={menuChangeHandler}
               menuItems={menuItems}
-              menuLabel="Your Aim"
+              menuLabel="Signup As"
             />
             <Button
               type="submit"
