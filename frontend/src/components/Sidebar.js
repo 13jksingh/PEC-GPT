@@ -1,9 +1,4 @@
-import {
-  Sidebar,
-  Menu,
-  MenuItem,
-  useProSidebar,
-} from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
 
 import {
   AiOutlineAppstore,
@@ -17,7 +12,7 @@ import { AiOutlineBell } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../auth/authContext";
 
-import { Button, Typography, Divider ,useTheme} from "@mui/material";
+import { Button, Typography, Divider, useTheme } from "@mui/material";
 
 //for now used css, will upgrade to styled later on
 import "../index.css";
@@ -26,7 +21,7 @@ const SideBar = ({ type }) => {
   const { collapsed } = useProSidebar();
   const logoutHandler = useAuthContext().logoutHandler;
 
-  const theme=useTheme();
+  const theme = useTheme();
 
   const menuItemsStyle = {
     paddingLeft: collapsed ? "1rem" : "2rem",
@@ -44,17 +39,26 @@ const SideBar = ({ type }) => {
         width="12rem"
         height="relative"
       >
-        <Typography
-          sx={{ marginLeft: collapsed ? "1rem" : "1.8rem", marginTop: "4rem",fontSize:"18px",color:"darkgoldenrod" }}
-        >
-          AEROCONNECT
-        </Typography>
+        {!collapsed && (
+          <Typography
+            sx={{
+              marginLeft: collapsed ? "1rem" : "1.8rem",
+              marginTop: "4rem",
+              fontSize: "1rem",
+              color: "darkgoldenrod",
+            }}
+          >
+            AEROCONNECT
+          </Typography>
+        )}
 
-        <Divider sx={{ marginTop: "2rem", marginBottom: "2rem" }} />
+        <Divider
+          sx={{ marginTop: collapsed ? "7rem" : "2rem", marginBottom: "2rem" }}
+        />
         <Menu>
           <MenuItem
             style={menuItemsStyle}
-            component={<Link to="main" />}
+            component={<Link to="" />}
             icon={<AiOutlineAppstore />}
           >
             Dashboard
@@ -62,7 +66,7 @@ const SideBar = ({ type }) => {
 
           <MenuItem
             style={menuItemsStyle}
-            component={<Link to="orders" />}
+            component={<Link to="history" />}
             icon={<AiOutlineHistory />}
           >
             History
@@ -70,7 +74,7 @@ const SideBar = ({ type }) => {
 
           <MenuItem
             style={menuItemsStyle}
-            component={<Link to="products" />}
+            component={<Link to="catalog" />}
             icon={<AiOutlineShoppingCart />}
           >
             {" "}
@@ -78,14 +82,14 @@ const SideBar = ({ type }) => {
           </MenuItem>
           <MenuItem
             style={menuItemsStyle}
-            component={<Link to="queries" className="link" />}
+            component={<Link to="addnew" className="link" />}
             icon={<AiOutlineSave />}
           >
             Add Part
           </MenuItem>
           <MenuItem
             style={menuItemsStyle}
-            component={<Link to="queries" className="link" />}
+            component={<Link to="requests" className="link" />}
             icon={<AiOutlineBell />}
           >
             Requests
@@ -96,8 +100,8 @@ const SideBar = ({ type }) => {
             component={<Button onClick={() => logoutHandler()} />}
             style={{
               marginLeft: collapsed ? "0.5rem" : "1.5rem",
-              fontWeight:40,
-              color:theme.palette.grey[400]
+              fontWeight: 40,
+              color: theme.palette.grey[400],
             }}
           >
             {" "}

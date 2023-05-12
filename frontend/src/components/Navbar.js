@@ -18,7 +18,6 @@ const Navbar = (type) => {
   const authName = authObject.authState.username;
   const header=authObject.authState.userType;
 
-
   return (
     <AppBar
       position="static"
