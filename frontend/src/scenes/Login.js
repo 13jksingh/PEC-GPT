@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {
@@ -18,7 +17,6 @@ import usePost from "../hooks/usePost";
 import useInput from "../hooks/useInput";
 import { useAuthContext } from "../auth/authContext";
 import FlexBetween from "../components/FlexBetween";
-import DropDownMenu from "../components/DropMenuGroup";
 
 const Login = () => {
   const theme = useTheme();
@@ -36,7 +34,7 @@ const Login = () => {
   } = useInput(
     "",
     (val) => val.match("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"),
-    "enter a valid email"
+    "Enter a valid email"
   );
 
   const {
@@ -47,7 +45,7 @@ const Login = () => {
     valError: passwordError,
     touched: passwordTouched,
     errortext: passwordErrorText,
-  } = useInput("", (val) => val.length > 0, "size >0");
+  } = useInput("", (val) => val.length > 0, "Enter a valid password");
 
   const { isLoading, error, sendRequest } = usePost();
 
@@ -149,9 +147,9 @@ const Login = () => {
                 Don't have an account? Sign Up
               </Link>
             </FlexBetween>
-
-            {error & { error }}
-            {isLoading & <span>...Loading</span>}
+            
+            {error ? error : null}
+            {isLoading ? <span>...Loading</span> : null}
           </Box>
         </Box>
       </Container>
