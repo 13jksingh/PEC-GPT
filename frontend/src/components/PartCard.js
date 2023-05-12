@@ -1,36 +1,21 @@
 import * as React from "react";
 import {
-  Box,
   Card,
   CardContent,
   CardActionArea,
   Typography,
   Grid,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
+const PartCard = ({ data }) => {
+  const navigate = useNavigate();
 
-const data = {
-  "Part Name": "part name",
-  "Material Composition": "Aluminium",
-  "Age (years)": "1",
-  Condition: "used",
-  Location: "india",
-  Manufacturer: "aero",
-  "Aircraft Model": "boeng 69",
-};
-
-const PartCard = () => {
-  const cardClickHandler = () => {
-    console.log("card clicked");
+  const cardClickHandler = (event) => {
+    event.preventDefault();
+    navigate("../part", { replace: true, state: { id: data.dataID } });
   };
+
   return (
     <Card
       sx={{
@@ -38,12 +23,9 @@ const PartCard = () => {
         marginLeft: "3rem",
         marginRight: "3rem",
         height: "10rem",
-        marginTop: "2rem",
+        marginTop: "1rem",
       }}
     >
-      {/* <div style={{backgroundColor:"turquoise", width:"0.5%", display:"flex" ,height:"100%"}} />
-       */}
-
       <CardActionArea
         onClick={cardClickHandler}
         sx={{ width: "100%", height: "100%" }}
@@ -55,7 +37,7 @@ const PartCard = () => {
             variant="string"
             gutterBottom
           >
-            India
+            {data.Condition}
           </Typography>
 
           <Grid container>
@@ -65,34 +47,15 @@ const PartCard = () => {
                 variant="h2"
                 gutterBottom
               >
-                Engine
+                {data["Part Name"]}
               </Typography>
             </Grid>
             <Grid item md={6}>
-              <Typography variant="h3">12 years</Typography>
+              <Typography variant="h3">{data["Age (years)"]} years</Typography>
             </Grid>
           </Grid>
 
           <Grid container>
-            <Grid item md={3}>
-              <div>
-                <Typography
-                  style={{ color: "#adacac" }}
-                  variant="p"
-                  gutterBottom
-                >
-                  Manufacturer
-                </Typography>
-                <br />
-                <Typography
-                  style={{ fontWeight: "bold" }}
-                  variant="p"
-                  gutterBottom
-                >
-                  Boeing
-                </Typography>
-              </div>
-            </Grid>
             <Grid item md={3}>
               <div>
                 <Typography
@@ -108,7 +71,7 @@ const PartCard = () => {
                   variant="p"
                   gutterBottom
                 >
-                  Citation X
+                  {data["Aircraft Model"]}
                 </Typography>
               </div>
             </Grid>
@@ -127,7 +90,47 @@ const PartCard = () => {
                   variant="p"
                   gutterBottom
                 >
-                  Aluminium
+                  {data["Material Composition"]}
+                </Typography>
+              </div>
+            </Grid>
+
+            <Grid item md={3}>
+              <div>
+                <Typography
+                  style={{ color: "#adacac" }}
+                  variant="p"
+                  gutterBottom
+                >
+                  Location
+                </Typography>
+                <br />
+                <Typography
+                  style={{ fontWeight: "bold" }}
+                  variant="p"
+                  gutterBottom
+                >
+                  {data["Location"]}
+                </Typography>
+              </div>
+            </Grid>
+
+            <Grid item md={3}>
+              <div>
+                <Typography
+                  style={{ color: "#adacac" }}
+                  variant="p"
+                  gutterBottom
+                >
+                  Manufacturer
+                </Typography>
+                <br />
+                <Typography
+                  style={{ fontWeight: "bold" }}
+                  variant="p"
+                  gutterBottom
+                >
+                  {data["Manufacturer"]}
                 </Typography>
               </div>
             </Grid>

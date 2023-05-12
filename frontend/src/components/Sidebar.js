@@ -69,7 +69,7 @@ const SideBar = ({ type }) => {
             component={<Link to="history" />}
             icon={<AiOutlineHistory />}
           >
-            History
+            My Parts
           </MenuItem>
 
           <MenuItem
@@ -86,13 +86,6 @@ const SideBar = ({ type }) => {
             icon={<AiOutlineSave />}
           >
             Add Part
-          </MenuItem>
-          <MenuItem
-            style={menuItemsStyle}
-            component={<Link to="requests" className="link" />}
-            icon={<AiOutlineBell />}
-          >
-            Requests
           </MenuItem>
           <Divider sx={{ marginTop: "2rem", marginBottom: "2rem" }} />
           <MenuItem
