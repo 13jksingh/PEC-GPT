@@ -21,20 +21,10 @@ const data = {
   "Part Name": "part name",
   "Material Composition": "Aluminium",
   "Age (years)": "1",
-  Condition: "used",
-  Location: "india",
-  Manufacturer: "aero",
+  "Condition": "used",
+  "Location": "india",
+  "Manufacturer": "aero",
   "Aircraft Model": "boeng 69",
-  "Potential Use Cases": "dildo",
-  "Remanufacturing Potential": "45",
-  "Renewable Material Content (%)": "2",
-  "Carbon Footprint Saved (kg CO2e)": "2",
-  "Water Usage Saved (liters)": "21",
-  "Landfill Waste Saved (kg)": "34",
-  "Energy Consumption Saved (kWh)": "2",
-  "Toxicity Score Difference": "4",
-  "Remanufacturing Potential (%)": "3",
-  "Life Cycle Assessment Score": "6",
 };
 
 const PartCard = () => {
@@ -49,42 +39,80 @@ const PartCard = () => {
         marginRight: "3rem",
         height: "10rem",
       }}
+      
     >
+      {/* <div style={{backgroundColor:"turquoise", width:"0.5%", display:"flex" ,height:"100%"}} />
+     */}
+      
       <CardActionArea
         onClick={cardClickHandler}
         sx={{ width: "100%", height: "100%" }}
+        style={{borderLeft:"5px solid turquoise"}}
       >
+      
+        
         <CardContent>
+          
+          <Typography style={{ backgroundColor: "turquoise" }} variant="string" gutterBottom>
+            India
+          </Typography>
+
+          <Grid container>
+            <Grid item md={6}>
+              <Typography style={{fontWeight:"bold"}} variant="h2" gutterBottom>
+                Engine
+              </Typography>
+            </Grid>
+            <Grid item md={6}>
+              <Typography variant="h3">
+                12 years
+              </Typography>
+            </Grid>
+          </Grid>
+
+
           <Grid container>
             <Grid item md={3}>
-              <Typography variant="h2" gutterBottom>
-                {data["Part Name"]}
-              </Typography>
+              <div>
+                <Typography style={{ color: "#adacac" }} variant="p" gutterBottom>
+                  Manufacturer
+                </Typography>
+                <br />
+                <Typography style={{ fontWeight: "bold" }} variant="p" gutterBottom>
+                  Boeing
+                </Typography>
+              </div>
             </Grid>
             <Grid item md={3}>
-              <Typography variant="h4" component="div">
-                {data["Age (years)"]}
-              </Typography>
+              <div>
+                <Typography style={{ color: "#adacac" }} variant="p" gutterBottom>
+                  Aircraft Model
+                </Typography>
+                <br />
+                <Typography style={{ fontWeight: "bold" }} variant="p" gutterBottom>
+                  Citation X
+                </Typography>
+              </div>
             </Grid>
             <Grid item md={3}>
-              <Typography variant="h4" component="div">
-                {data["Manufacturer"]}
-              </Typography>
+              <div>
+                <Typography style={{ color: "#adacac" }} variant="p" gutterBottom>
+                  Material Composition
+                </Typography>
+                <br />
+                <Typography style={{ fontWeight: "bold" }} variant="p" gutterBottom>
+                  Aluminium
+                </Typography>
+              </div>
             </Grid>
-            <Grid item md={3}>
-              <Typography variant="h4" component="div">
-                {data["Condition"]}
-              </Typography>
-            </Grid>
-            <Typography variant="body1">
-              Card content
-              <br />
-              {'"describes the content"'}
-            </Typography>
           </Grid>
+
         </CardContent>
+
+
       </CardActionArea>
     </Card>
+    
   );
 };
 
