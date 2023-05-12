@@ -20,7 +20,6 @@ const CheckBoxGroup = ({ state, setState, label, errorText }) => {
 
   return (
     <FormControl
-      required
       error={error}
       component="fieldset"
       sx={{ m: 1 }}

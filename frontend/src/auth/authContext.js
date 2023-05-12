@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-const RequireAuth = ({ children }) => {
+const RequireAuth = ({ children ,type}) => {
   const location = useLocation();
   const authObject = useAuthContext();
 
@@ -49,11 +49,11 @@ const RequireAuth = ({ children }) => {
     return <Navigate to="/login" state={{ from: location.pathname }} />;
   }
 
-  if (authObject.authState.userType === "Manufacturer" && authObject.authState.userType === "Recycler") {
+  if (type === "manu" && authObject.authState.userType === "Recycler") {
     return <Navigate to="/rec" state={{ from: location.pathname }} />;
   }
 
-  if (authObject.authState.userType === "Recycler" && authObject.authState.userType !== "Recycler") {
+  if (type === "rec" && authObject.authState.userType !== "Recycler") {
     return <Navigate to="/manu" state={{ from: location.pathname }} />;
   }
   

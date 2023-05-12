@@ -59,6 +59,17 @@ const ManuCatalog = () => {
   };
   const [manufacturer, setManufacturer] = useState(manufacturerList);
 
+  const materialCompositionList = {
+    Aluminum: true,
+    Titanium: true,
+    Steel: true,
+    Composite: true,
+  };
+  const [materialComposition, setMaterialComposition] = useState(
+    materialCompositionList
+  );
+
+  console.log(partName);
 
   const { isLoading, error, sendRequest } = useGet(
     `${process.env.REACT_APP_BACKEND}/api/v1/data`
@@ -85,11 +96,7 @@ const ManuCatalog = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: mobile ? "column" : "row" }}>
-      <Box
-        width={mobile ? "100%" : "30%"}
-        margin="1rem"
-        borderShadow={2}
-      >
+      <Box width={mobile ? "100%" : "30%"} margin="1rem" borderShadow={2}>
         <CheckBoxGroup
           state={partName}
           setState={setPartName}

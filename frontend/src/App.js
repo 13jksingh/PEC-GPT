@@ -52,7 +52,7 @@ const App = () => {
         <Route
           path="/manu"
           element={
-            <RequireAuth>
+            <RequireAuth type="rec">
               <ManuRoot />
             </RequireAuth>
           }
@@ -68,7 +68,7 @@ const App = () => {
         <Route
           path="/rec"
           element={
-            <RequireAuth>
+            <RequireAuth type="rec">
               <RecRoot />
             </RequireAuth>
           }
