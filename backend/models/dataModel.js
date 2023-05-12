@@ -59,9 +59,9 @@ class Data {
         const statusData = {
           userId: userId,
           dataID: dataID,
-          bought: 1,
+          bought: 0,
           sold: 0,
-          requested: 0
+          requested: 1
         };
         connection.query("INSERT INTO status SET ?", statusData, (err, res) => {
             if (err) {
@@ -168,22 +168,47 @@ class Data {
     });
   }
   
-  static updateStatus(dataID, status, result) {
-    connection.query(
-      "UPDATE data SET status = ? WHERE dataID = ?",
-      [status, dataID],
-      (err, res) => {
+  static updateStatus(dataID, email,status, result) {
+    connection.query("SELECT userId FROM userTable WHERE email = ?", email, (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(err, null);
           return;
         }
-        console.log("updated data: ", { dataID: dataID, status: status });
-        result(null, { dataID: dataID, status: status });
-      }
-    );
+        const userId = res[0].userId;
+        const statusData = {
+          userId: userId,
+          dataID: dataID,
+          bought: 1,
+          sold: 0,
+          requested: 0
+        };
+        connection.query("UPDATE status SET bought = ?, request = ? WHERE dataID = ?", [1,0,dataID], (err, res) => {
+            if (err) {
+              console.log("error: ", err);
+              result(err, null);
+              return;
+            }
+            console.log("created status: ", { id: res.insertId, ...statusData });
+            connection.query(
+                "UPDATE data SET status = ? WHERE dataID = ?",
+                [status, dataID],
+                (err, res) => {
+                  if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                    return;
+                  }
+                  console.log("updated data: ", { dataID: dataID, status: status });
+                  result(null, { dataID: dataID, status: status });
+                }
+              );
+        });
+    });
+    
   }
 }
+
 
 
 

@@ -162,7 +162,7 @@ exports.createData = (req, res) => {
   
       const email = decoded.email;
   
-      Data.updateStatus(dataID, 'completed', (err, data) => {
+      Data.updateStatus(dataID, email, 'completed', (err, data) => {
         if (err) {
           if (err.message === 'Data not found') {
             res.status(404).send({ message: `Data with id ${dataID} not found.` });
