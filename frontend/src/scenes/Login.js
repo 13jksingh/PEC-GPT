@@ -17,11 +17,13 @@ import {
 import usePost from "../hooks/usePost";
 import useInput from "../hooks/useInput";
 import { useAuthContext } from "../auth/authContext";
+import FlexBetween from "../components/FlexBetween";
+import DropDownMenu from "../components/DropMenuGroup";
 
 const Login = () => {
   const theme = useTheme();
-  const authObject=useAuthContext();
-  const setToken=authObject.loginHandler;
+  const authObject = useAuthContext();
+  const setToken = authObject.loginHandler;
 
   const {
     val: email,
@@ -139,33 +141,19 @@ const Login = () => {
             >
               LOGIN{" "}
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="forgotpass" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  Don't have an account? Sign Up
-                </Link>
-              </Grid>
-              {error &
-              (
-                <Grid item xs>
-                  {error}
-                </Grid>
-              )}
-              {isLoading &
-              (
-                <Grid item xs>
-                  ...Loading
-                </Grid>
-              )}
-            </Grid>
+            <FlexBetween>
+              <Link href="forgotpass" variant="body2">
+                Forgot password?
+              </Link>
+              <Link to="/signup" variant="body2">
+                Don't have an account? Sign Up
+              </Link>
+            </FlexBetween>
+
+            {error & { error }}
+            {isLoading & <span>...Loading</span>}
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </Box>
   );
