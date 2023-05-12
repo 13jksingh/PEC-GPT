@@ -30,8 +30,28 @@ const ManuCatalog = () => {
     materialCompositionList
   );
 
-  console.log(partName);
+  const potentialUseCasesList = {
+    Furniture: true,
+    "Art Installations": true,
+    "Building Materials": true,
+    "Aircraft Maintenance": true,
+    "Automotive Components": true,
+  };
+  const [potentialUseCases, setPotentialUseCases] = useState(
+    potentialUseCasesList
+  );
 
+  const aircraftModelList = {
+    737: true,
+    "Citation X": true,
+    A320: true,
+    E175: true,
+    G650: true,
+    CRJ900: true,
+  };
+  const [aircraftModel, setaircraftModel] = useState(aircraftModelList);
+
+  //setup useGet hook
   const { isLoading, error, sendRequest } = useGet(
     `${process.env.REACT_APP_BACKEND}/api/v1/data`
   );
@@ -63,7 +83,36 @@ const ManuCatalog = () => {
           setState={setPartName}
           label="PART NAME"
           errorText="select alteast one"
-          items={partNameList}
+        />
+        <CheckBoxGroup
+          state={materialComposition}
+          setState={setMaterialComposition}
+          label="MATERIAL"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={location}
+          setState={setLocation}
+          label="LOCATION"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={manufacturer}
+          setState={setManufacturer}
+          label="MANUFACTURER"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={aircraftModel}
+          setState={setAircraftModel}
+          label="Aircraft model"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={potentialUseCases}
+          setState={setPotentialUseCases}
+          label="use cases"
+          errorText="select alteast one"
         />
       </Box>
       <FlexBetween flexDirection="column" marginRight="1rem" width="100%">
