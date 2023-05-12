@@ -5,6 +5,6 @@ const dataController = require("../controllers/dataController");
 
 router.get("/", dataController.listData);
 router.get("/:data_id", dataController.findDataById);
-router.post('/', dataController.createData);
+router.post('/post-data', dataController.createData);
 
 module.exports = router;
