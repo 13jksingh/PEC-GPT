@@ -5,6 +5,7 @@ const connection = require("./config/db.config").connection;
 const JWT_SECRET = require("./config/db.config").JWT_SECRET;
 const userController = require("./controllers/userController");
 const authController = require("./controllers/authController");
+const dataController = require("./controllers/dataController");
 
 const userRoute = require("./routes/userRoute");
 const dataRoute = require("./routes/dataRoute");
@@ -59,6 +60,8 @@ app.use("/api/v1/users", userRoute);
 
 app.get("/verify-email/:token", userController.verifyEmail);
 app.use("/api/v1/settings", authenticateToken, settingsRoute);
+app.get("/complete/:dataID/:token", dataController.complete);
+
 app.use(
     "/api/v1/data",
     authenticateToken,

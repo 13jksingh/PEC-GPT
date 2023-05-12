@@ -34,7 +34,7 @@ const BreadCrumbs = () => {
                 {toTitleCase(value)}
               </Typography>
             ) : (
-              <Link color="inherit" component={RouterLink} to="/" key={to}>
+              <Link color="inherit" component={RouterLink} to={to} key={to}>
                 {toTitleCase(value)}
               </Link>
             );
