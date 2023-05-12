@@ -9,7 +9,6 @@ import Signup from "./scenes/Signup";
 import Landing from "./scenes/Landing";
 import ErrorPage from "./scenes/Error";
 import NewPart from "./scenes/NewPart";
-import Requests from "./scenes/Requests";
 
 import ManuDashboard from "./scenes/Manu/ManuDashboard";
 import ManuCatalaog from "./scenes/Manu/ManuCatalog";
@@ -64,7 +63,6 @@ const App = () => {
           <Route path="catalog" element={<ManuCatalaog />} />
           <Route path="part" element={<ManuPart />} />
           <Route path="history" element={<ManuHistory />} />
-          <Route path="requests" element={<Requests />} />
           <Route path="addnew" element={<NewPart />} />
         </Route>
 
@@ -81,7 +79,6 @@ const App = () => {
           <Route path="catalog" element={<RecCatalog />} />
           <Route path="part" element={<RecPart />} />
           <Route path="history" element={<RecHistory />} />
-          <Route path="requests" element={<Requests />} />
           <Route path="addnew" element={<NewPart />} />
         </Route>
       </Routes>

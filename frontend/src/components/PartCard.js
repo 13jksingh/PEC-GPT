@@ -8,25 +8,14 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const DataItem = (title, value) => {
-  <Grid item md={3}>
-    <div>
-      <Typography style={{ color: "#adacac" }} variant="p" gutterBottom>
-        {title}
-      </Typography>
-      <br />
-      <Typography style={{ fontWeight: "bold" }} variant="p" gutterBottom>
-        {value}
-      </Typography>
-    </div>
-  </Grid>;
-};
-
 const PartCard = ({ data }) => {
   const navigate = useNavigate();
-  const cardClickHandler = () => {
-    navigate("../part", { replace: true }, { id: data.data_id });
+
+  const cardClickHandler = (event) => {
+    event.preventDefault();
+    navigate("../part", { replace: true, state: { id: data.dataID } });
   };
+
   return (
     <Card
       sx={{
@@ -67,7 +56,6 @@ const PartCard = ({ data }) => {
           </Grid>
 
           <Grid container>
-            <DataItem title="" value={data[""]} />
             <Grid item md={3}>
               <div>
                 <Typography

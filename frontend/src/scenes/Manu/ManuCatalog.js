@@ -198,7 +198,7 @@ const ManuCatalog = () => {
   //useEffect for making the fetch call to the backend
   useEffect(() => {
     const handleGet = (newdata) => {
-      console.log(newdata);
+      //console.log(newdata);
       setData((i) => newdata.data);
     };
 
@@ -403,8 +403,8 @@ const ManuCatalog = () => {
         />
       </Box>
       <FlexBetween flexDirection="column" marginRight="1rem" width="100%" marginBottom="2rem">
-        {data.map((item) => (
-          <PartCard data={item} key={item.DataId} />
+        {data.map((item,indx) => (
+          <PartCard data={item} key={indx} />
         ))}
       </FlexBetween>
     </Box>
