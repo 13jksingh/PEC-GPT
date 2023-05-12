@@ -7,7 +7,7 @@ import useGet from "../../hooks/useGet";
 import { useMediaQuery, Typography } from "@mui/material";
 import { useProSidebar } from "react-pro-sidebar";
 
-const RecHistory = () => {
+const AeroHistory = () => {
   const [data, setData] = useState([]);
 
   const mobile = useMediaQuery("(max-width:600px)");
@@ -80,4 +80,4 @@ const RecHistory = () => {
   );
 };
 
-export default RecHistory;
+export default AeroHistory;

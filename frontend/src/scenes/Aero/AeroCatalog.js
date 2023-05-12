@@ -8,7 +8,7 @@ import { useProSidebar } from "react-pro-sidebar";
 import CheckBoxGroup from "../../components/CheckBoxGroup";
 import Loading from "../Loading";
 
-const ManuCatalog = () => {
+const AeroCatalog = () => {
   const [data, setData] = useState([]);
 
   //checkbox states
@@ -410,4 +410,4 @@ const ManuCatalog = () => {
   );
 };
 
-export default ManuCatalog;
+export default AeroCatalog;

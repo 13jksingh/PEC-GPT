@@ -4,12 +4,7 @@ import PartCard from "../components/PartCard";
 import FlexBetween from "../components/FlexBetween";
 
 const Landing = () => {
-  return (
-    <FlexBetween>
-      <Sidebar />
-      <PartCard/>
-    </FlexBetween>
-  );
+  return <FlexBetween>landing</FlexBetween>;
 };
 
 export default Landing;

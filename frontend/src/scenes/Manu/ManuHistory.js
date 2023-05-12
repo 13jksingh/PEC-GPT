@@ -5,16 +5,25 @@ import Loading from "../Loading";
 import CheckBoxGroup from "../../components/CheckBoxGroup";
 import useGet from "../../hooks/useGet";
 import { useMediaQuery, Typography } from "@mui/material";
-import {useProSidebar} from "react-pro-sidebar";
+import { useProSidebar } from "react-pro-sidebar";
 
 const ManuHistory = () => {
   const [data, setData] = useState([]);
 
+  const mobile = useMediaQuery("(max-width:600px)");
+
+  //checkbox state
+  const statusList = {
+    requested: true,
+    bought: true,
+    sold: true,
+  };
+  const [status, setStatus] = useState(statusList);
+
   //setup useGet hook
   const { isLoading, error, sendRequest } = useGet(
-    `${process.env.REACT_APP_BACKEND}/api/v1/data`
+    `${process.env.REACT_APP_BACKEND}/api/v1/dat`
   );
-  const mobile = useMediaQuery("(max-width:600px)");
 
   //useEffect for making the fetch call to the backend
   useEffect(() => {
@@ -27,7 +36,7 @@ const ManuHistory = () => {
   }, [sendRequest]);
 
   //close sidebar on loading this page
-  const { collapseSidebar, collapsed } = useProSidebar();
+  const { collapseSidebar } = useProSidebar();
   useEffect(() => {
     collapseSidebar();
   }, [collapseSidebar]);
@@ -45,9 +54,25 @@ const ManuHistory = () => {
       </div>
     );
   }
+
+  if (data.length === 0) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <Typography variant="h5" color="error">
+          No parts have been exchanged by this account on AEROCONNECt
+        </Typography>
+      </div>
+    );
+  }
+
   return (
     <>
-      <CheckBoxGroup />
+      <CheckBoxGroup
+        state={status}
+        setState={setStatus}
+        label="STATUS"
+        errorText="select atleast one"
+      />
       <FlexBetween>
         <Datagrid data={data} />
       </FlexBetween>

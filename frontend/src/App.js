@@ -9,18 +9,22 @@ import Signup from "./scenes/Signup";
 import Landing from "./scenes/Landing";
 import ErrorPage from "./scenes/Error";
 import NewPart from "./scenes/NewPart";
+import PartPage from "./scenes/PartPage";
+import Root from "./scenes/Root";
 
 import ManuDashboard from "./scenes/Manu/ManuDashboard";
 import ManuCatalaog from "./scenes/Manu/ManuCatalog";
 import ManuHistory from "./scenes/Manu/ManuHistory";
-import ManuPart from "./scenes/Manu/ManuPart";
-import ManuRoot from "./scenes/Manu/ManuRoot";
 
 import RecCatalog from "./scenes/Rec/RecCatalog";
 import RecHistory from "./scenes/Rec/RecHistory";
-import RecPart from "./scenes/Rec/RecPart";
 import RecDashboard from "./scenes/Rec/RecDashboard";
 import RecRoot from "./scenes/Rec/RecRoot";
+
+import AeroCatalog from "./scenes/Aero/AeroCatalog";
+import AeroDashboard from "./scenes/Aero/AeroDashboard";
+import AeroHistory from "./scenes/Aero/AeroHistory";
+import AeroRoot from "./scenes/Aero/AeroRoot";
 
 import { useAuthContext, RequireAuth } from "./auth/authContext";
 
@@ -55,13 +59,13 @@ const App = () => {
           path="/manu"
           element={
             <RequireAuth type="rec">
-              <ManuRoot />
+              <Root type="rec" />
             </RequireAuth>
           }
         >
           <Route path="" element={<ManuDashboard />} />
           <Route path="catalog" element={<ManuCatalaog />} />
-          <Route path="part" element={<ManuPart />} />
+          <Route path="part" element={<PartPage />} />
           <Route path="history" element={<ManuHistory />} />
           <Route path="addnew" element={<NewPart />} />
         </Route>
@@ -71,14 +75,30 @@ const App = () => {
           path="/rec"
           element={
             <RequireAuth type="rec">
-              <RecRoot />
+              <Root type="aero" />
             </RequireAuth>
           }
         >
           <Route path="" element={<RecDashboard />} />
           <Route path="catalog" element={<RecCatalog />} />
-          <Route path="part" element={<RecPart />} />
+          <Route path="part" element={<PartPage />} />
           <Route path="history" element={<RecHistory />} />
+          <Route path="addnew" element={<NewPart />} />
+        </Route>
+
+        {/*airline*/}
+        <Route
+          path="/aero"
+          element={
+            <RequireAuth type="aero">
+              <Root type="aero" />
+            </RequireAuth>
+          }
+        >
+          <Route path="" element={<AeroDashboard />} />
+          <Route path="catalog" element={<AeroCatalog />} />
+          <Route path="part" element={<PartPage />} />
+          <Route path="history" element={<AeroHistory />} />
           <Route path="addnew" element={<NewPart />} />
         </Route>
       </Routes>
