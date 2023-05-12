@@ -25,7 +25,7 @@ exports.request = (req, res) => {
     const dataID = req.params.data_id;
     const email = req.user.email;
     const status = "requested";
-    Data.request(dataID, status, (err, data) => {
+    Data.request(dataID, status, email,(err, data) => {
       if (err) {
         if (err.message === "Data not found") {
           res.status(404).send({
@@ -107,7 +107,7 @@ exports.createData = (req, res) => {
   
     const data = new Data(req.body.partName, req.body.materialComposition, req.body.age, req.body.location, req.body.condition, req.body.manufacturer, req.body.aircraftModel, req.body.potentialUseCases, req.body.newCarbon, req.body.recycledCarbon, req.body.newWater, req.body.recycledWater, req.body.newLandfill, req.body.recycledLandfill, req.body.newEnergy, req.body.recycledEnergy, req.body.recyclingRate, req.body.newToxicity, req.body.recycledToxicity, req.body.manufacturingPotential, req.body.lifeCycleAssessment, req.body.renewableContent, req.body.carbonFootprintContent, req.body.waterUsageSaved, req.body.landfillSaved, req.body.energySaved, req.body.toxicityScoreDiff, req.body.remanufacturingPotential, req.body.lifeCycleAssessmentScore);
   
-    Data.create(data, (err, data) => {
+    Data.create(data, email,(err, data) => {
       if (err)
         res.status(500).send({
           message:

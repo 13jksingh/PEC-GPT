@@ -48,36 +48,59 @@ class Data {
     });
   }
 
-  static request(dataID, status, result) {
-    connection.query(
-      "UPDATE data SET status = ? WHERE dataID = ?",
-      [status, dataID],
-      (err, res) => {
+  static request(dataID, status, email, result) {
+    connection.query("SELECT userId FROM userTable WHERE email = ?", email, (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(err, null);
           return;
         }
-  
-        connection.query(
-            "SELECT `Part Name`, `Material Composition`, `Age (years)` FROM data WHERE dataID = ?",
-
-          [dataID],
-          (err, res) => {
+        const userId = res[0].userId;
+        const statusData = {
+          userId: userId,
+          dataID: dataID,
+          bought: 1,
+          sold: 0,
+          requested: 0
+        };
+        connection.query("INSERT INTO status SET ?", statusData, (err, res) => {
             if (err) {
               console.log("error: ", err);
               result(err, null);
               return;
             }
-  
-            console.log("updated data: ", res[0]);
-            result(null, res[0]);
-          }
-        );
-      }
-    );
-  }
-  
+            console.log("created status: ", { id: res.insertId, ...statusData });
+            connection.query(
+                "UPDATE data SET status = ? WHERE dataID = ?",
+                [status, dataID],
+                (err, res) => {
+                  if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                    return;
+                  }
+            
+                  connection.query(
+                      "SELECT `Part Name`, `Material Composition`, `Age (years)` FROM data WHERE dataID = ?",
+          
+                    [dataID],
+                    (err, res) => {
+                      if (err) {
+                        console.log("error: ", err);
+                        result(err, null);
+                        return;
+                      }
+            
+                      console.log("updated data: ", res[0]);
+                      result(null, res[0]);
+                    }
+                  );
+                }
+            );
+        });
+    });
+}
+
   
   
   
@@ -102,17 +125,49 @@ class Data {
     );
   }
 
-  static create(data, result) {
-    connection.query("INSERT INTO data SET ?", data, (err, res) => {
+  static create(data, email, result) {
+    connection.query("SELECT userId FROM userTable WHERE email = ?", email, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
         return;
       }
-      console.log("created data: ", { id: res.insertId, ...data });
-      result(null, { id: res.insertId, ...data });
+      const userId = res[0].userId;
+      connection.query("SELECT MAX(dataID) AS max_id FROM data", (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+        const dataID = res[0].max_id + 1;
+        const statusData = {
+          userId: userId,
+          dataID: dataID,
+          bought: 0,
+          sold: 1,
+          requested: 0
+        };
+        connection.query("INSERT INTO status SET ?", statusData, (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+          }
+          console.log("created status: ", { id: res.insertId, ...statusData });
+          connection.query("INSERT INTO data SET ?", data, (err, res) => {
+            if (err) {
+              console.log("error: ", err);
+              result(err, null);
+              return;
+            }
+            console.log("created data: ", { id: res.insertId, ...data });
+            result(null, { id: res.insertId, ...data });
+          });
+        });
+      });
     });
   }
+  
   static updateStatus(dataID, status, result) {
     connection.query(
       "UPDATE data SET status = ? WHERE dataID = ?",
