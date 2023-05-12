@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 
 exports.listData = (req, res) => {
   const page = parseInt(req.query.page) || 1; 
-  const limit = parseInt(req.query.limit) || 10;
+  const limit = parseInt(req.query.limit) || 5;
 //   const companyId = req.user.company_id; 
   Data.getAll(page, limit, (err, data) => {
     if (err) {
