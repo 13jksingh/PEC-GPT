@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -19,11 +20,23 @@ import useInput from "../hooks/useInput";
 import { useAuthContext } from "../auth/authContext";
 import FlexBetween from "../components/FlexBetween";
 import DropMenuGroup from "../components/DropMenuGroup";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import Slide from '@mui/material/Slide';
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const Signup = () => {
   const theme = useTheme();
 
   const [showSeeEmail, setShowSeeEmail] = useState(false);
+
+  const handleClose = () => {
+    setShowSeeEmail(false);
+  };
 
   const {
     val: firstName,
@@ -79,8 +92,8 @@ const Signup = () => {
 
   const [menuValue, setMenuValue] = useState(menuItems[0].value);
 
-  const menuChangeHandler=(event)=>{
-    setMenuValue(i=>event.target.value)
+  const menuChangeHandler = (event) => {
+    setMenuValue(i => event.target.value)
   };
 
   const showDialogue = () => {
@@ -95,9 +108,9 @@ const Signup = () => {
       data: {
         email,
         password,
-        first_name:firstName,
-        last_name:lastName,
-        userType:menuValue
+        first_name: firstName,
+        last_name: lastName,
+        userType: menuValue
       },
       do: showDialogue,
     };
@@ -222,19 +235,36 @@ const Signup = () => {
             </Link>
 
             {(error !== null) ?
-            (
-              <Grid item xs>
-                {error}
-              </Grid>
-            ):null}
+              (
+                <Grid item xs>
+                  {error}
+                </Grid>
+              ) : null}
             {(isLoading === true) ?
-            (
-              <Grid item xs>
-                ...Loading
-              </Grid>
-            ): null}
-            {(showSeeEmail === true) ?
-            <span>Please check your email for verification</span>:null}
+              (
+                <Grid item xs>
+                  ...Loading
+                </Grid>
+              ) : null}
+
+              <div>
+                <Dialog
+                  open={showSeeEmail}
+                  TransitionComponent={Transition}
+                  keepMounted
+                  onClose={handleClose}
+                  aria-describedby="alert-dialog-slide-description"
+                >
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                      Verification link has been sent to your email
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose}>Close</Button>
+                  </DialogActions>
+                </Dialog>
+              </div>
           </Box>
         </Box>
       </Container>

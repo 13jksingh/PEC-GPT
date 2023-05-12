@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import Sidebar from "../components/Sidebar";
+import PartCard from "../components/PartCard";
+import FlexBetween from "../components/FlexBetween";
 
 const Landing = () => {
   return (
-    <div>
-      Landing
-    </div>
-  )
-}
+    <FlexBetween>
+      <Sidebar />
+      <PartCard/>
+    </FlexBetween>
+  );
+};
 
-export default Landing
+export default Landing;
