@@ -5,12 +5,12 @@ import BreadCrumbs from "../../components/BreadCrumbs";
 import { Outlet } from "react-router-dom";
 import {Box} from "@mui/material";
 
-const ManuRoot = () => {
+const AeroRoot = () => {
   return (
     <Box sx={{ display: "flex" }}>
-      <Sidebar type="manu"/>
+      <Sidebar type="aero"/>
       <Box sx={{ flexGrow: 1 }}>
-        <Navbar type="manu"/>
+        <Navbar type="aero"/>
         <BreadCrumbs/>
         <Outlet/>
       </Box>
@@ -18,4 +18,4 @@ const ManuRoot = () => {
   );
 };
 
-export default ManuRoot;
+export default AeroRoot;

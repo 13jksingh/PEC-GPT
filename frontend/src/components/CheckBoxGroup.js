@@ -6,10 +6,10 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
-import {useTheme} from "@mui/material"
+import { useTheme } from "@mui/material";
 
 const CheckBoxGroup = ({ state, setState, label, errorText }) => {
-  const theme=useTheme();
+  const theme = useTheme();
 
   const handleChange = (event) => {
     setState({
@@ -25,13 +25,19 @@ const CheckBoxGroup = ({ state, setState, label, errorText }) => {
     <FormControl
       error={error}
       component="fieldset"
-      sx={{ m: 1,width:"100%" }}
+      sx={{ m: 1, width: "100%" }}
       variant="standard"
     >
-      <FormLabel component="legend" sx={{color:theme.palette.grey[600],textTransform:"uppercase"}}>{label}</FormLabel>
+      <FormLabel
+        component="legend"
+        sx={{ color: theme.palette.grey[600], textTransform: "uppercase" }}
+      >
+        {label}
+      </FormLabel>
       <FormGroup>
-        {Object.keys(items).map((k) => (
+        {Object.keys(items).map((k, indx) => (
           <FormControlLabel
+            key={indx}
             control={
               <Checkbox
                 checked={items[k]}

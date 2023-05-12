@@ -29,22 +29,22 @@ const SliderCustom = ({ slider, handleSliderChange, label }) => {
         value={slider}
         onChange={handleSliderChange}
         valueLabelDisplay="auto"
-        small
+        small="true"
         sx={{
           width: "80%",
           marginTop: "auto",
           marginBottom: "auto",
           "& .MuiSlider-thumb": {
-            color: theme.palette.green[700],
-          },
-          "& .MuiSlider-track": {
-            color: theme.palette.green[600],
-          },
-          "& .MuiSlider-rail": {
             color: theme.palette.green[400],
           },
+          "& .MuiSlider-track": {
+            color: theme.palette.green[300],
+          },
+          "& .MuiSlider-rail": {
+            color: theme.palette.green[300],
+          },
           "& .MuiSlider-active": {
-            color: theme.palette.green[800],
+            color: theme.palette.green[500],
           },
         }}
       />
