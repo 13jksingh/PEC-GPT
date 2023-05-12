@@ -231,12 +231,49 @@ const ManuCatalog = () => {
         width={mobile ? "100%" : collapsed ? "20%" : "15%"}
         margin="1rem"
         borderShadow={2}
-        sx={{ height: "43rem", overflow: "hidden", overflowY: "scroll" }}
+        sx={{ height: "50rem", overflow: "hidden", overflowY: "scroll" }}
       >
         <CheckBoxGroup
           state={partName}
           setState={setPartName}
           label="PART NAME"
+          errorText="select alteast one"
+        />
+
+        <CheckBoxGroup
+          state={condition}
+          setState={setCondition}
+          label="condition"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={materialComposition}
+          setState={setMaterialComposition}
+          label="MATERIAL"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={location}
+          setState={setLocation}
+          label="LOCATION"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={manufacturer}
+          setState={setManufacturer}
+          label="MANUFACTURER"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={aircraftModel}
+          setState={setaircraftModel}
+          label="Aircraft model"
+          errorText="select alteast one"
+        />
+        <CheckBoxGroup
+          state={potentialUseCases}
+          setState={setPotentialUseCases}
+          label="use cases"
           errorText="select alteast one"
         />
         <Slider
@@ -364,46 +401,10 @@ const ManuCatalog = () => {
           handleSliderChange={handleLifeCycleAssessmentScoreChange}
           label="LifeCycleAssessmentScore"
         />
-        <CheckBoxGroup
-          state={condition}
-          setState={setCondition}
-          label="condition"
-          errorText="select alteast one"
-        />
-        <CheckBoxGroup
-          state={materialComposition}
-          setState={setMaterialComposition}
-          label="MATERIAL"
-          errorText="select alteast one"
-        />
-        <CheckBoxGroup
-          state={location}
-          setState={setLocation}
-          label="LOCATION"
-          errorText="select alteast one"
-        />
-        <CheckBoxGroup
-          state={manufacturer}
-          setState={setManufacturer}
-          label="MANUFACTURER"
-          errorText="select alteast one"
-        />
-        <CheckBoxGroup
-          state={aircraftModel}
-          setState={setaircraftModel}
-          label="Aircraft model"
-          errorText="select alteast one"
-        />
-        <CheckBoxGroup
-          state={potentialUseCases}
-          setState={setPotentialUseCases}
-          label="use cases"
-          errorText="select alteast one"
-        />
       </Box>
-      <FlexBetween flexDirection="column" marginRight="1rem" width="100%">
+      <FlexBetween flexDirection="column" marginRight="1rem" width="100%" marginBottom="2rem">
         {data.map((item) => (
-          <PartCard data={item} />
+          <PartCard data={item} key={item.DataId} />
         ))}
       </FlexBetween>
     </Box>

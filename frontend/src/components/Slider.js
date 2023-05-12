@@ -1,6 +1,5 @@
 import React from "react";
 import { useTheme, Box, Slider, Typography } from "@mui/material";
-import FlexBetween from "./FlexBetween";
 
 const SliderCustom = ({ slider, handleSliderChange, label }) => {
   const theme = useTheme();
