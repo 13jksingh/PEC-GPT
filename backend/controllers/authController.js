@@ -44,6 +44,7 @@ exports.login = (req, res) => {
                   expiresIn: "120h",
                 }
               );
+              console.log(data);
   
               res.status(200).send({
                 message: "Authentication successful.",
