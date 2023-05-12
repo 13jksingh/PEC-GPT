@@ -7,6 +7,7 @@ const userController = require("./controllers/userController");
 const authController = require("./controllers/authController");
 
 const userRoute = require("./routes/userRoute");
+const dataRoute = require("./routes/dataRoute");
 
 const cors = require("cors");
 const corsOptions = {
@@ -56,6 +57,19 @@ const authenticateToken = (req, res, next) => {
 app.use("/api/v1/users", userRoute);
 
 app.get("/verify-email/:token", userController.verifyEmail);
+app.use(
+    "/api/v1/data",
+    authenticateToken,
+    (req, res, next) => {
+      if (req.user.verified) {
+        next();
+      } else {
+        res.status(401).send("Email not verified.");
+      }
+    },
+    dataRoute
+  );
+  
 
 const port = 8000;
 app.listen(port, () => {
