@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { useAuthContext } from "../global/authContext";
+import { useAuthContext } from "../auth/authContext";
 
 const useGet = (url) => {
   const [isLoading, setIsLoading] = useState(false);
