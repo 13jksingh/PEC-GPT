@@ -78,7 +78,6 @@ exports.findDataById = (req, res) => {
               `<li>Part Name: ${req.body.part_name}</li>` +
               `<li>Material Composition: ${req.body.material_composition}</li>` +
               `<li>Age (years): ${req.body.age}</li>` +
-              // Add the rest of the form data here
               "</ul>",
             };
       
