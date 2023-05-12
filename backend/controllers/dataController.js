@@ -56,8 +56,8 @@ exports.request = (req, res) => {
             "<p>Below is the information you have requested:</p>" +
             "<ul>" +
             `<li>Part Name: ${data['Part Name']}</li>` +
-            `<li>Material Composition: ${data.['Material Composition']}</li>` +
-            `<li>Age (years): ${data.['Age (years)']}</li>` +
+            `<li>Material Composition: ${data['Material Composition']}</li>` +
+            `<li>Age (years): ${data['Age (years)']}</li>` +
             "</ul>" +
             `<p>Please click on the following link to verify your email address:</p><p>http://localhost:8000/complete/${dataID}/${token}</p>`,
         };
