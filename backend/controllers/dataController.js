@@ -17,3 +17,25 @@ exports.listData = (req, res) => {
     }
   });
 };
+
+
+exports.findDataById = (req, res) => {
+    const dataID = req.params.data_id;
+    console.log(dataID);
+    Data.findById(dataID, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Data with id ${dataID} not found.`,
+          });
+        } else {
+          res.status(500).send({
+            message: `Error retrieving Data with id ${dataID}`,
+          });
+        }
+      } else {
+        res.send(data);
+      }
+    });
+  };
+  
