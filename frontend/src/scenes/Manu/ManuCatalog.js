@@ -26,36 +26,23 @@ const ManuCatalog = () => {
   };
   const [condition, setCondition] = useState(conditionList);
 
-  const { isLoading, error, sendRequest } = useGet(
-    `${process.env.REACT_APP_BACKEND}/api/v1/data`
-  );
   const locationList = {
     Australia: true,
     "North America": true,
-    Africa:true,
-    "South America":true,
+    Africa: true,
+    "South America": true,
     Europe: true,
-    Asia:true
+    Asia: true,
   };
   const [location, setLocation] = useState(locationList);
 
   const manufacturerList = {
     Boeing: true,
     Embraer: true,
-    Bombardier:true,
-    Cessna:true,
+    Bombardier: true,
+    Cessna: true,
     Gulfstream: true,
-    Airbus:true
-  };
-  const [manufacturer, setManufacturer] = useState(manufacturerList);
-
-  const manufacturerList = {
-    Boeing: true,
-    Embraer: true,
-    Bombardier:true,
-    Cessna:true,
-    Gulfstream: true,
-    Airbus:true
+    Airbus: true,
   };
   const [manufacturer, setManufacturer] = useState(manufacturerList);
 
@@ -116,7 +103,12 @@ const ManuCatalog = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: mobile ? "column" : "row" }}>
-      <Box width={mobile ? "100%" : "30%"} margin="1rem" borderShadow={2}>
+      <Box
+        width={mobile ? "100%" : "30%"}
+        margin="1rem"
+        borderShadow={2}
+        sx={{ maxHeight: "100%", overflow: "auto" }}
+      >
         <CheckBoxGroup
           state={partName}
           setState={setPartName}
@@ -143,7 +135,7 @@ const ManuCatalog = () => {
         />
         <CheckBoxGroup
           state={aircraftModel}
-          setState={setAircraftModel}
+          setState={setaircraftModel}
           label="Aircraft model"
           errorText="select alteast one"
         />
