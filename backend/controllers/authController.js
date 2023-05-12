@@ -49,6 +49,7 @@ exports.login = (req, res) => {
                 message: "Authentication successful.",
                 token: token,
                 username: data.first_name,
+                userType: data.userType,
               });
             }
           });
