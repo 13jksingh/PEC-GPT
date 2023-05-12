@@ -48,6 +48,24 @@ class Data {
     });
   }
 
+    static request(dataID, status, result) {
+      connection.query(
+        "UPDATE data SET status = ? WHERE dataID = ?",
+        [status, dataID],
+        (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+          }
+          console.log("updated data: ", { dataID: dataID, status: status });
+          result(null, { dataID: dataID, status: status });
+        }
+      );
+    }
+  
+  
+  
   static findById(DataID, result) {
     connection.query(
       `SELECT * FROM data WHERE dataID = "${DataID}"`,
