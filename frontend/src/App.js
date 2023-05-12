@@ -27,13 +27,13 @@ const App = () => {
   const theme = useMemo(() => createTheme(themeSettings()), []);
 
   const authObject = useAuthContext();
-  //const isAuth = authObject.isAuth;
-  const isAuth = false;
+  const isAuth = authObject.isAuth;
+
   //const userType = authObject.authState.type;
 
   //route to current page logic if logged in
   const location = useLocation();
-  const pathName = location.state?.from || "/";
+  const pathName = location.state?.from || "/manu";
   return (
     <ThemeProvider theme={theme}>
       <Routes>
