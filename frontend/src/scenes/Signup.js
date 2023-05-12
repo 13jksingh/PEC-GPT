@@ -221,20 +221,20 @@ const Signup = () => {
               Already have an account? Log In
             </Link>
 
-            {(error !== null) &
+            {(error !== null) ?
             (
               <Grid item xs>
                 {error}
               </Grid>
-            )}
-            {(isLoading === true) &
+            ):null}
+            {(isLoading === true) ?
             (
               <Grid item xs>
                 ...Loading
               </Grid>
-            )}
-            {(showSeeEmail === true) &
-            <span>Please check your email for verification</span>}
+            ): null}
+            {(showSeeEmail === true) ?
+            <span>Please check your email for verification</span>:null}
           </Box>
         </Box>
       </Container>
