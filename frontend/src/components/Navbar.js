@@ -42,7 +42,7 @@ const Navbar = (type) => {
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
           Welcome, {authName}
         </Typography>
-        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h5" component="div" sx={{ flexGrow: 1,textTransform:'uppercase' }}>
           {header}
         </Typography>
         <Button color="inherit" onClick={() => logoutHandler()}>

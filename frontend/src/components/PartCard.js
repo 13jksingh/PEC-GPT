@@ -7,6 +7,7 @@ import {
   Typography,
   Grid,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const bull = (
   <Box
@@ -27,9 +28,10 @@ const data = {
   "Aircraft Model": "boeng 69",
 };
 
-const PartCard = () => {
+const PartCard = ({ data }) => {
+  const navigate = useNavigate();
   const cardClickHandler = () => {
-    console.log("card clicked");
+    navigate("part", { id: data.data_id });
   };
   return (
     <Card
