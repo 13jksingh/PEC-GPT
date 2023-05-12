@@ -8,6 +8,7 @@ import useGet from "../../hooks/useGet";
 import Loading from "../Loading";
 import { useProSidebar } from "react-pro-sidebar";
 
+<<<<<<< HEAD
 const ManuPart = () => {
   //get dataID
   const id = useLocation().state.id;
@@ -52,6 +53,53 @@ const ManuPart = () => {
       </div>
     );
   }
+=======
+function createData(name, value) {
+  return { name, value };
+}
+
+const basicDetails = [
+  'Part Name',	
+  'Material Composition',
+  'Age (years)',
+  'Condition',	
+  'Location'	,
+  'Manufacturer',	
+  'Aircraft Model',	
+  'Potential Use Cases'
+]
+const newPartDetail = [
+  'New Parts Carbon Footprint (kg CO2e)',
+  'Water Usage - New Parts (liters)'	,
+  'Landfill Waste - New Parts (kg)'	,
+  'Energy Consumption - New Parts (kWh)'	,
+  'Toxicity Score - New Parts'	,
+]
+const recycPartDetail = [
+  'Recycled Parts Carbon Footprint (kg CO2e)'	,
+  'Water Usage - Recycled Parts (liters)'	,
+  'Landfill Waste - Recycled Parts (kg)'	,
+  'Energy Consumption - Recycled Parts (kWh)'	,
+  'Toxicity Score - Recycled Parts'	,
+
+]
+const BenfitTable = [
+  'Recycling Rate (%)'	,
+  'Remanufacturing Potential'	,
+  'Life Cycle Assessment'	,
+  'Renewable Material Content (%)'	,
+  'Carbon Footprint Saved (kg CO2e)'	,
+  'Water Usage Saved (liters)'	,
+  'Landfill Waste Saved (kg)'	,
+  'Energy Consumption Saved (kWh)'	,
+  'Toxicity Score Difference',
+  'Remanufacturing Potential (%)'	,
+  'Life Cycle Assessment Score'
+]
+
+// const rows = columns.map(x=>createData(x,0))
+
+>>>>>>> 4d8898fd77f00d4d167a4bb24c78f4f90d3aa82f
 
   return (
     <div style={{ padding: "50px" }}>
@@ -143,7 +191,22 @@ const ManuPart = () => {
           </Grid>
         </div>
       </div>
+<<<<<<< HEAD
       {data && <TablePart rows={data} />}
+=======
+      <TablePart rows={
+        basicDetails.map(x=>createData(x,0))
+      } title="Basic Details"/>
+      <TablePart rows={
+        BenfitTable.map(x=>createData(x,0))
+      } title="Overall Benifit"/>
+      <TablePart rows={
+        newPartDetail.map(x=>createData(x,0))
+      } title="New Part Data"/>
+      <TablePart rows={
+        recycPartDetail.map(x=>createData(x,0))
+      } title="Recycle Part Data"/>
+>>>>>>> 4d8898fd77f00d4d167a4bb24c78f4f90d3aa82f
     </div>
   );
 };
