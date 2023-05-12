@@ -49,34 +49,40 @@ const App = () => {
           path="/signup"
           element={isAuth ? <Navigate to={pathName} /> : <Signup />}
         />
+
+        {/*manufacturer*/}
+
         <Route
           path="/manu"
           element={
-            <RequireAuth>
+            <RequireAuth type="rec">
               <ManuRoot />
             </RequireAuth>
           }
         >
           <Route path="" element={<ManuDashboard />} />
           <Route path="catalog" element={<ManuCatalaog />} />
-          <Route path="history" element={<ManuHistory />} />
           <Route path="part" element={<ManuPart />} />
+          <Route path="history" element={<ManuHistory />} />
           <Route path="requests" element={<Requests />} />
           <Route path="addnew" element={<NewPart />} />
         </Route>
 
+        {/*recycle*/}
         <Route
           path="/rec"
           element={
-            <RequireAuth>
+            <RequireAuth type="rec">
               <RecRoot />
             </RequireAuth>
           }
         >
           <Route path="" element={<RecDashboard />} />
           <Route path="catalog" element={<RecCatalog />} />
-          <Route path="history" element={<RecHistory />} />
           <Route path="part" element={<RecPart />} />
+          <Route path="history" element={<RecHistory />} />
+          <Route path="requests" element={<Requests />} />
+          <Route path="addnew" element={<NewPart />} />
         </Route>
       </Routes>
     </ThemeProvider>
