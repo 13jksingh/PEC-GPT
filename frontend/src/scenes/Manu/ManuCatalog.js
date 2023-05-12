@@ -20,6 +20,46 @@ const ManuCatalog = () => {
   };
   const [partName, setPartName] = useState(partNameList);
 
+  const conditionList = {
+    New: true,
+    Used: true,
+  };
+  const [condition, setCondition] = useState(conditionList);
+
+  const { isLoading, error, sendRequest } = useGet(
+    `${process.env.REACT_APP_BACKEND}/api/v1/data`
+  );
+  const locationList = {
+    Australia: true,
+    "North America": true,
+    Africa:true,
+    "South America":true,
+    Europe: true,
+    Asia:true
+  };
+  const [location, setLocation] = useState(locationList);
+
+  const manufacturerList = {
+    Boeing: true,
+    Embraer: true,
+    Bombardier:true,
+    Cessna:true,
+    Gulfstream: true,
+    Airbus:true
+  };
+  const [manufacturer, setManufacturer] = useState(manufacturerList);
+
+  const manufacturerList = {
+    Boeing: true,
+    Embraer: true,
+    Bombardier:true,
+    Cessna:true,
+    Gulfstream: true,
+    Airbus:true
+  };
+  const [manufacturer, setManufacturer] = useState(manufacturerList);
+
+
   const { isLoading, error, sendRequest } = useGet(
     `${process.env.REACT_APP_BACKEND}/api/v1/data`
   );
