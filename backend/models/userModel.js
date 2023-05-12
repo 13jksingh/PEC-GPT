@@ -71,6 +71,28 @@ const User = function (user) {
       );
     });
   };
+
+  User.findByEmail = (email, result) => {
+    connection.query(
+      "SELECT * FROM userTable WHERE email = ?",
+      email,
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+  
+        if (res.length) {
+          result(null, res[0]);
+          return;
+        }
+  
+        result(null, null);
+      }
+    );
+  };
+  
   
 
   module.exports = User;
