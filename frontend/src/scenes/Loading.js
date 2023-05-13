@@ -10,11 +10,13 @@ const loadingStyles = {
 };
 
 const LoadingPage = () => {
+
   return (
     <div style={loadingStyles}>
       <CircularProgress />
       <p>Loading...</p>
-    </div>
+    </div>  
+
   );
 };
 
