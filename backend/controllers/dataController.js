@@ -33,61 +33,74 @@ exports.metrics = (req, res) => {
     }
   });
 };
-
-exports.request = (req, res) => {
-  const dataID = req.params.data_id;
-  const email = req.user.email;
-  const status = "requested";
-  Data.request(dataID, status, email, (err, data) => {
-    if (err) {
-      if (err.message === "Data not found") {
-        res.status(404).send({
-          message: `Data with id ${dataID} not found.`,
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 5;
+  //   const companyId = req.user.company_id; 
+    Data.getAllMetrics((err, data) => {
+      if (err) {
+        res.status(500).send({
+          message: err.message || "Some error occurred while retrieving data.",
         });
       } else {
-        res.status(500).send({
-          message: `Error updating Data with id ${dataID}`,
+        res.send(data);
+      }
+    });
+  };
+
+exports.request = (req, res) => {
+    const dataID = req.params.data_id;
+    const email = req.user.email;
+    const status = "requested";
+    Data.request(dataID, status, email,(err, data) => {
+      if (err) {
+        if (err.message === "Data not found") {
+          res.status(404).send({
+            message: `Data with id ${dataID} not found.`,
+          });
+        } else {
+          res.status(500).send({
+            message: `Error updating Data with id ${dataID}`,
+          });
+        }
+      } else {
+        const token = jwt.sign({ email: email }, JWT_SECRET);
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: "anurag.jindal@therrgroup.in",
+            pass: "arjtygnqgcsrppof",
+            authMethod: "PLAIN",
+          },
+        });
+  
+        const mailOptions = {
+          from: "anurag.jindal@therrgroup.in",
+          to: email,
+          subject: "Data requested on AeroConnect",
+          html:
+            "<p>Your Data has been requested on our website. Thank you for using AeroConnect!</p>" +
+            "<p>Below is the information you have requested:</p>" +
+            "<ul>" +
+            `<li>Part Name: ${data['Part Name']}</li>` +
+            `<li>Material Composition: ${data['Material Composition']}</li>` +
+            `<li>Age (years): ${data['Age (years)']}</li>` +
+            "</ul>" +
+            `<p>Please click on the following link to verify your email address:</p><p>http://localhost:8000/complete/${dataID}/${token}</p>`,
+        };
+  
+        transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(info);
+          }
+        });
+  
+        res.send({
+          message: `An email has been sent to ${email}. Please click on the link in the email to complete your request.`,
         });
       }
-    } else {
-      const token = jwt.sign({ email: email }, JWT_SECRET);
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "anurag.jindal@therrgroup.in",
-          pass: "arjtygnqgcsrppof",
-          authMethod: "PLAIN",
-        },
-      });
-
-      const mailOptions = {
-        from: "anurag.jindal@therrgroup.in",
-        to: email,
-        subject: "Data requested on AeroConnect",
-        html:
-          "<p>Your Data has been requested on our website. Thank you for using AeroConnect!</p>" +
-          "<p>Below is the information you have requested:</p>" +
-          "<ul>" +
-          `<li>Part Name: ${data["Part Name"]}</li>` +
-          `<li>Material Composition: ${data["Material Composition"]}</li>` +
-          `<li>Age (years): ${data["Age (years)"]}</li>` +
-          "</ul>" +
-          `<p>Please click on the following link to verify your email address:</p><p>http://localhost:8000/complete/${dataID}/${token}</p>`,
-      };
-
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(info);
-        }
-      });
-
-      res.send({
-        message: `An email has been sent to ${email}. Please click on the link in the email to complete your request.`,
-      });
-    }
-  });
+    });
 };
 
 exports.findDataById = (req, res) => {
