@@ -62,7 +62,7 @@ const App = () => {
             </RequireAuth>
           }
         >
-          <Route path="" element={<ManuDashboard />} />
+          <Route path="" element={<Landing/>} />
           <Route path="catalog" element={<ManuCatalaog />} />
           <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<ManuHistory />} />
@@ -79,7 +79,7 @@ const App = () => {
             </RequireAuth>
           }
         >
-          <Route path="" element={<RecDashboard />} />
+          <Route path="" element={<Landing />} />
           <Route path="catalog" element={<RecCatalog />} />
           <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<RecHistory />} />
@@ -96,7 +96,7 @@ const App = () => {
             </RequireAuth>
           }
         >
-          <Route path="" element={<AeroDashboard />} />
+          <Route path="" element={<Landing />} />
           <Route path="catalog" element={<AeroCatalog />} />
           <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<AeroHistory />} />

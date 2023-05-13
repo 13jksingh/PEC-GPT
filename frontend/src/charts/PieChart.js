@@ -51,31 +51,6 @@ const PieChart = ({ data }) => {
           spacing: 10,
         },
       ]}
-      // legends={[
-      //   {
-      //     anchor: "bottom",
-      //     direction: "column",
-      //     justify: false,
-      //     translateX: 400,
-      //     translateY: 100,
-      //     itemsSpacing: 7,
-      //     itemWidth: 10,
-      //     itemHeight: 21,
-      //     itemTextColor: "#999",
-      //     itemDirection: "left-to-right",
-      //     itemOpacity: 1,
-      //     symbolSize: 13,
-      //     symbolShape: "circle",
-      //     effects: [
-      //       {
-      //         on: "hover",
-      //         style: {
-      //           itemTextColor: "#000",
-      //         },
-      //       },
-      //     ],
-      //   },
-      // ]}
     />
   );
 };
