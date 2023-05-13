@@ -23,7 +23,7 @@ const Landing = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setPieChart1((i) => data.Material_compostion);
+        setPieChart1((i) => data["Material_compostion"]);
         setPieChart2((i) => data.Condition);
         setBarChart1((i) => data.performance_metric);
         setBarChart2((i) => data.statusBar);
