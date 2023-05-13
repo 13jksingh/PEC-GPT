@@ -41,7 +41,7 @@ const Landing = () => {
   return (
     <>
       <Box>
-        <Box m="20px" height="10vh">
+        <Box m="20px">
           <h1>PIECHART 1</h1>
           {pieChart1 !== [] && <PieChart data={pieChart1} />}
         </Box>
