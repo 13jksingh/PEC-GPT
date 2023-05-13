@@ -57,6 +57,7 @@ const authenticateToken = (req, res, next) => {
   };
 
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/metrics", dataRoute);
 
 app.get("/verify-email/:token", userController.verifyEmail);
 app.use("/api/v1/settings", authenticateToken, settingsRoute);
