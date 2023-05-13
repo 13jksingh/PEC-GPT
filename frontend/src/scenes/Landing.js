@@ -6,7 +6,7 @@ import PartCard from "../components/PartCard";
 import FlexBetween from "../components/FlexBetween";
 import PieChart from "../charts/PieChart";
 import Loading from "./Loading";
-import BarChart1 from "../charts/BarChart1";
+import BarChart from "../charts/BarChart1";
 import BarChart2 from "../charts/BarChart2";
 
 const Landing = () => {
@@ -23,10 +23,10 @@ const Landing = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log();
-        setPieChart1((i) => data.Material_compostion);
+        setPieChart1((i) => data.MaterialCompostion);
         setPieChart2((i) => data.Condition);
-        setBarChart1((i) => data.performance_metric);
-        setBarChart1((i) => data.statusBar);
+        setBarChart1((i) => data.performanceMetric);
+        setBarChart2((i) => data.statusBar);
 
         // setBarChart((i) => data.statusBar);
         setLoading(false);

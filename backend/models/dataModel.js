@@ -104,7 +104,7 @@ class Data {
           return;
         }
 
-        result(null, { count: countResult[0].count, Material_compostion:transformedPieData, Condition: transformedConditionPie, statusBar:mockBar, performance_metric:mock_performance });
+        result(null, { count: countResult[0].count, MaterialCompostion:transformedPieData, Condition: transformedConditionPie, statusBar:mockBar, performanceMetric:mock_performance });
       });
     });
 }
