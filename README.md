@@ -29,3 +29,6 @@ Dashboard:
 The platform includes a dashboard that provides users with graphical representations of their contribution to the circular economy and sustainability.
 The dashboard displays various metrics, such as the percentage of recycled or repurposed materials, reduction in CO2 emissions, water usage, and landfill waste resulting from recycling efforts.
 This workflow allows users to register on the platform, search for and select end-of-life aircraft components, initiate purchasing processes, and track their contributions to sustainability through the provided dashboard.
+
+**Hosted on EC2 INSTANCE 
+LIVE ON "http://65.0.89.63"**
