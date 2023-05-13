@@ -49,12 +49,16 @@ const RequireAuth = ({ children ,type}) => {
     return <Navigate to="/login" state={{ from: location.pathname }} />;
   }
 
-  if (type === "manu" && authObject.authState.userType === "Recycler") {
+  if (type !== "manu" && authObject.authState.userType === "Manufacturer") {
+    return <Navigate to="/manu" state={{ from: location.pathname }} />;
+  }
+
+  if (type !== "rec" && authObject.authState.userType === "Recycler") {
     return <Navigate to="/rec" state={{ from: location.pathname }} />;
   }
 
-  if (type === "rec" && authObject.authState.userType !== "Recycler") {
-    return <Navigate to="/manu" state={{ from: location.pathname }} />;
+  if(type !=='aero' && authObject.authState.userType === "Airline"){
+    return <Navigate to="/aero" state={{ from: location.pathname }} />;
   }
   
   return <>{children}</>;

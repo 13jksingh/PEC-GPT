@@ -4,10 +4,11 @@ import {
   AiOutlineAppstore,
   AiOutlineHistory,
   AiOutlineSave,
+  AiOutlineSetting,
 } from "react-icons/ai";
+
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AiOutlineLogout } from "react-icons/ai";
-import { AiOutlineBell } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../auth/authContext";
@@ -63,7 +64,6 @@ const SideBar = ({ type }) => {
           >
             Dashboard
           </MenuItem>
-
           <MenuItem
             style={menuItemsStyle}
             component={<Link to="history" />}
@@ -71,7 +71,6 @@ const SideBar = ({ type }) => {
           >
             My Parts
           </MenuItem>
-
           <MenuItem
             style={menuItemsStyle}
             component={<Link to="catalog" />}
@@ -87,6 +86,14 @@ const SideBar = ({ type }) => {
           >
             Add Part
           </MenuItem>
+          <Divider sx={{ marginTop: "2rem", marginBottom: "2rem" }} />
+          <MenuItem
+            style={menuItemsStyle}
+            component={<Link to="settings" className="link" />}
+            icon={<AiOutlineSetting />}
+          >
+            Settings
+          </MenuItem>{" "}
           <Divider sx={{ marginTop: "2rem", marginBottom: "2rem" }} />
           <MenuItem
             icon={<AiOutlineLogout />}

@@ -11,6 +11,7 @@ import ErrorPage from "./scenes/Error";
 import NewPart from "./scenes/NewPart";
 import PartPage from "./scenes/PartPage";
 import Root from "./scenes/Root";
+import Settings from "./scenes/Settings";
 
 import ManuDashboard from "./scenes/Manu/ManuDashboard";
 import ManuCatalaog from "./scenes/Manu/ManuCatalog";
@@ -19,12 +20,10 @@ import ManuHistory from "./scenes/Manu/ManuHistory";
 import RecCatalog from "./scenes/Rec/RecCatalog";
 import RecHistory from "./scenes/Rec/RecHistory";
 import RecDashboard from "./scenes/Rec/RecDashboard";
-import RecRoot from "./scenes/Rec/RecRoot";
 
 import AeroCatalog from "./scenes/Aero/AeroCatalog";
 import AeroDashboard from "./scenes/Aero/AeroDashboard";
 import AeroHistory from "./scenes/Aero/AeroHistory";
-import AeroRoot from "./scenes/Aero/AeroRoot";
 
 import { useAuthContext, RequireAuth } from "./auth/authContext";
 
@@ -58,8 +57,8 @@ const App = () => {
         <Route
           path="/manu"
           element={
-            <RequireAuth type="rec">
-              <Root type="rec" />
+            <RequireAuth type="manu">
+              <Root type="manu" />
             </RequireAuth>
           }
         >
@@ -68,6 +67,7 @@ const App = () => {
           <Route path="part" element={<PartPage />} />
           <Route path="history" element={<ManuHistory />} />
           <Route path="addnew" element={<NewPart />} />
+          <Route path="settings" element={<Settings/>}/>
         </Route>
 
         {/*recycle*/}
@@ -84,6 +84,7 @@ const App = () => {
           <Route path="part" element={<PartPage />} />
           <Route path="history" element={<RecHistory />} />
           <Route path="addnew" element={<NewPart />} />
+          <Route path="settings" element={<Settings/>}/>
         </Route>
 
         {/*airline*/}
@@ -100,6 +101,7 @@ const App = () => {
           <Route path="part" element={<PartPage />} />
           <Route path="history" element={<AeroHistory />} />
           <Route path="addnew" element={<NewPart />} />
+          <Route path="settings" element={<Settings/>}/>
         </Route>
       </Routes>
     </ThemeProvider>
