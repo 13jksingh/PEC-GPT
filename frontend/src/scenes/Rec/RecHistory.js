@@ -59,7 +59,7 @@ const RecHistory = () => {
     return (
       <div style={{ textAlign: "center", marginTop: "50px" }}>
         <Typography variant="h5" color="error">
-          No parts have been exchanged by this account on AEROCONNECt
+          No parts have been exchanged by this account on AEROCONNECT
         </Typography>
       </div>
     );
