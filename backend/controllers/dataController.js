@@ -24,7 +24,7 @@ exports.metrics = (req, res) => {
     const page = parseInt(req.query.page) || 1; 
     const limit = parseInt(req.query.limit) || 5;
   //   const companyId = req.user.company_id; 
-    Data.getAllMetrics(page, limit, (err, data) => {
+    Data.getAllMetrics((err, data) => {
       if (err) {
         res.status(500).send({
           message: err.message || "Some error occurred while retrieving data.",

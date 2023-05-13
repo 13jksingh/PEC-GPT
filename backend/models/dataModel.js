@@ -47,10 +47,12 @@ class Data {
       result(null, { data: res });
     });
   }
-  static getAllMetrics(page, limit, result) {
-    const offset = (page - 1) * limit;
+
+
+  static getAllMetrics(result) {
     let sqlQuery = `SELECT * FROM data`;
-    sqlQuery += ` LIMIT ${limit} OFFSET ${offset}`;
+
+    let countQuery = `SELECT COUNT(*) as count FROM data WHERE status = 'completed'`;
 
     connection.query(sqlQuery, (err, res) => {
       if (err) {
@@ -58,9 +60,32 @@ class Data {
         result(err, null);
         return;
       }
-      result(null, { data: res });
+      let transformedPieData = {};
+      let pieData = {};
+      let conditionPie = {};
+      let transformedConditionPie = {};
+      res.forEach(i => {
+        if (i.status === 'completed') {
+            pieData[i["Material Composition"]] = (pieData[i["Material Composition"]] + 1) || 1;
+            conditionPie[i["Condition"]] = (conditionPie[i["Condition"]] + 1) || 1;
+        }
+      });
+      transformedPieData = Object.entries(pieData).map(([key, value]) => ({ id: key, label: key, value }));
+      transformedConditionPie = Object.entries(conditionPie).map(([key, value]) => ({ id: key, label: key, value }));
+
+      connection.query(countQuery, (err, countResult) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+
+        result(null, { count: countResult[0].count, Material_compostion:transformedPieData, Condition: transformedConditionPie });
+      });
     });
-  }  
+}
+
+
 
   static request(dataID, status, email, result) {
     connection.query("SELECT userId FROM userTable WHERE email = ?", email, (err, res) => {
