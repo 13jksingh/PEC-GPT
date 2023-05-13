@@ -6,7 +6,7 @@ import PartCard from "../components/PartCard";
 import FlexBetween from "../components/FlexBetween";
 import PieChart from "../charts/PieChart";
 import Loading from "./Loading";
-import BarChart from "../charts/BarChart1";
+import BarChart1 from "../charts/BarChart1";
 import BarChart2 from "../charts/BarChart2";
 
 const Landing = () => {
@@ -25,8 +25,8 @@ const Landing = () => {
         console.log();
         setPieChart1((i) => data.MaterialCompostion);
         setPieChart2((i) => data.Condition);
-        setBarChart1((i) => data.performanceMetric);
-        setBarChart2((i) => data.statusBar);
+        setBarChart2((i) => data.performanceMetric);
+        setBarChart1((i) => data.statusBar);
 
         // setBarChart((i) => data.statusBar);
         setLoading(false);
@@ -42,12 +42,12 @@ const Landing = () => {
   return (
     <>
       <Box>
-        <Box m="20px">
+        <Box m="20px" height="55vh">
           <h1>Overview of recyclend and repurposed materials</h1>
           {pieChart1 !== [] && <PieChart data={pieChart1} />}
         </Box>
 
-        <Box m="20px" height="75vh">
+        <Box m="20px" height="55vh">
           {pieChart2 !== [] && <PieChart data={pieChart2} />}
         </Box>
 
