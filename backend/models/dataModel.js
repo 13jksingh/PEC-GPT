@@ -64,14 +64,38 @@ class Data {
       let pieData = {};
       let conditionPie = {};
       let transformedConditionPie = {};
+      let statusBar = {
+        "Carbon Footprint Saved (kg CO2e)": 0,
+        "Water Usage Saved (liters)": 0,
+        "Landfill Waste Saved (kg)": 0,
+        "Energy Consumption Saved (kWh)":0
+      };
+      let mockBar = {};
+      let performance_metric = {
+        "Boeing":0,
+        "Embraer":0,
+        "Bombardier":0,
+        "Cessna":0,
+        "Gulfstream":0,
+        "Airbus":0
+      }
+      let mock_performance = [];
       res.forEach(i => {
         if (i.status === 'completed') {
             pieData[i["Material Composition"]] = (pieData[i["Material Composition"]] + 1) || 1;
             conditionPie[i["Condition"]] = (conditionPie[i["Condition"]] + 1) || 1;
+            Object.keys(statusBar).forEach(key => {
+                statusBar[key] += i[key] || 0;
+            });
+            if (i["Manufacturer"] in performance_metric) {
+                performance_metric[i["Manufacturer"]] += ((i["Life Cycle Assessment Score"])/2) || 0;
+            }
         }
       });
       transformedPieData = Object.entries(pieData).map(([key, value]) => ({ id: key, label: key, value }));
       transformedConditionPie = Object.entries(conditionPie).map(([key, value]) => ({ id: key, label: key, value }));
+      mockBar = Object.entries(statusBar).map(([key, value]) => ({ status: key, [key]: value }));
+      mock_performance = Object.entries(performance_metric).map(([key, value]) => ({ status: key, [key]: value }));
 
       connection.query(countQuery, (err, countResult) => {
         if (err) {
@@ -80,7 +104,7 @@ class Data {
           return;
         }
 
-        result(null, { count: countResult[0].count, Material_compostion:transformedPieData, Condition: transformedConditionPie });
+        result(null, { count: countResult[0].count, Material_compostion:transformedPieData, Condition: transformedConditionPie, statusBar:mockBar, performance_metric:mock_performance });
       });
     });
 }
