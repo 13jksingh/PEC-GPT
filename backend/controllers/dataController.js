@@ -20,6 +20,21 @@ exports.listData = (req, res) => {
   });
 };
 
+exports.metrics = (req, res) => {
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 5;
+  //   const companyId = req.user.company_id; 
+    Data.getAllMetrics(page, limit, (err, data) => {
+      if (err) {
+        res.status(500).send({
+          message: err.message || "Some error occurred while retrieving data.",
+        });
+      } else {
+        res.send(data);
+      }
+    });
+  };
+
 
 exports.request = (req, res) => {
     const dataID = req.params.data_id;
