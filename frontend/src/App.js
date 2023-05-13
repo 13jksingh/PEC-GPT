@@ -42,7 +42,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path="*" element={<ErrorPage />} />
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route
           path="/login"
           element={isAuth ? <Navigate to={pathName} /> : <Login />}
@@ -67,7 +67,7 @@ const App = () => {
           <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<ManuHistory />} />
           <Route path="addnew" element={<NewPart />} />
-          <Route path="settings" element={<Settings/>}/>
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         {/*recycle*/}
@@ -84,7 +84,7 @@ const App = () => {
           <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<RecHistory />} />
           <Route path="addnew" element={<NewPart />} />
-          <Route path="settings" element={<Settings/>}/>
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         {/*airline*/}
@@ -101,7 +101,7 @@ const App = () => {
           <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<AeroHistory />} />
           <Route path="addnew" element={<NewPart />} />
-          <Route path="settings" element={<Settings/>}/>
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </ThemeProvider>
