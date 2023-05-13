@@ -12,7 +12,6 @@ exports.changeUsername = (req, res) => {
   
     const inputPassword = req.body.password;
     const newFirstName = req.body.new_first_name;
-    const newLastName = req.body.new_last_name;
     const email = req.user.email;
   
     User.findByEmail(email, (err, user) => {
@@ -48,7 +47,7 @@ exports.changeUsername = (req, res) => {
   
         else{connection.query(
           "UPDATE userTable SET first_name = ?, last_name = ? WHERE email = ?",
-          [newFirstName, newLastName, email],
+          [newFirstName, email],
           (err, data) => {
             if (err) {
               console.log(err);

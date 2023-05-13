@@ -7,7 +7,7 @@ import useGet from "../../hooks/useGet";
 import { useMediaQuery, Typography } from "@mui/material";
 import { useProSidebar } from "react-pro-sidebar";
 
-const ManuHistory = () => {
+const RecHistory = () => {
   const [data, setData] = useState([]);
 
   const mobile = useMediaQuery("(max-width:600px)");
@@ -22,18 +22,22 @@ const ManuHistory = () => {
 
   //setup useGet hook
   const { isLoading, error, sendRequest } = useGet(
-    `${process.env.REACT_APP_BACKEND}/api/v1/dat`
+    `${process.env.REACT_APP_BACKEND}/api/v1/data/history`
   );
 
   //useEffect for making the fetch call to the backend
   useEffect(() => {
     const handleGet = (newdata) => {
       console.log(newdata);
-      setData((i) => newdata.data);
+      let temp = [];
+      if (status.requested) temp = [...temp, newdata.requested];
+      if (status.sold) temp = [...temp, newdata.sold];
+      if (status.bought) temp = [...temp, newdata.bought];
+      setData((i) => temp);
     };
 
     sendRequest(handleGet);
-  }, [sendRequest]);
+  }, [sendRequest, status.bought, status.requested, status.sold]);
 
   //close sidebar on loading this page
   const { collapseSidebar } = useProSidebar();
@@ -59,11 +63,13 @@ const ManuHistory = () => {
     return (
       <div style={{ textAlign: "center", marginTop: "50px" }}>
         <Typography variant="h5" color="error">
-          No parts have been exchanged by this account on AEROCONNECt
+          No parts have been exchanged by this account on AEROCONNECT
         </Typography>
       </div>
     );
   }
+
+  console.log(data);
 
   return (
     <>
@@ -80,4 +86,5 @@ const ManuHistory = () => {
   );
 };
 
-export default ManuHistory;
+export default RecHistory;
+
