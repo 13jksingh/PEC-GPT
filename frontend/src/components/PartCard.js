@@ -13,7 +13,7 @@ const PartCard = ({ data }) => {
 
   const cardClickHandler = (event) => {
     event.preventDefault();
-    navigate("../part", { replace: true, state: { id: data.dataID } });
+    navigate("part", { replace: true, state: { id: data.dataID } });
   };
 
   return (

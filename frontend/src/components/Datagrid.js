@@ -2,27 +2,31 @@ import React from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useTheme } from "@mui/material";
+import { useProSidebar } from "react-pro-sidebar";
 
-const Datagrid = ({data}) => {
+const Datagrid = ({ data, columns }) => {
   const theme = useTheme();
   const colors = theme.palette;
+  const { collapsed } = useProSidebar();
+
   return (
     <Box
       m="40px 0 0 0"
-      height="80vh"
-      width="150vh"
+      maxWidth={collapsed ? "100rem" : "90rem"}
       sx={{
+        overflowX: "scroll",
+        overflowY: "scroll",
         "& .MuiDataGrid-root": {
           border: "1px",
         },
         "& .MuiDataGrid-cell": {
           borderBottom: "none",
-          backgroundColor: colors.black[100]
+          backgroundColor: "#fff",
         },
         "& .name-column--cell": {
           color: colors.green[900],
         },
-        "& .status-column--cell":{
+        "& .status-column--cell": {
           color: colors.red[700],
         },
         "& .MuiDataGrid-columnHeaders": {
@@ -42,10 +46,10 @@ const Datagrid = ({data}) => {
       }}
     >
       <DataGrid
-        rows={data.slice(1)}
-        columns={data[0]}
+        rows={data}
+        columns={columns}
         components={{ Toolbar: GridToolbar }} // this property is user to filter the data
-        getRowId={(i)=>i.order_id}
+        getRowId={(i) => i.dataID}
       />
     </Box>
   );
