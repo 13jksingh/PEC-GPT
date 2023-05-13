@@ -4,7 +4,7 @@ import FlexBetween from "../components/FlexBetween";
 import { Box, useMediaQuery, Typography, Button } from "@mui/material";
 import { useProSidebar } from "react-pro-sidebar";
 import CheckBoxGroup from "../components/CheckBoxGroup";
-import usePost from "../hooks/usePost";
+import usePost from "../hooks/usePostToken";
 
 import DropMenuGroup from "../components/DropMenuGroup";
 import Dialog from "@mui/material/Dialog";
@@ -14,7 +14,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import Slide from "@mui/material/Slide";
 
 import { useAuthContext } from "../auth/authContext";
-
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -120,6 +119,7 @@ const NewPart = () => {
         manufacturer,
         potentialUseCases,
       },
+      token: authToken,
       do: setShowSeeEmail,
     };
 
@@ -145,7 +145,6 @@ const NewPart = () => {
           setState={setCondition}
           label="condition"
           row="true"
-          
           unique="true"
           errorText="select one"
         />
@@ -195,7 +194,13 @@ const NewPart = () => {
           label="Ageyears"
         />
       </Box>
-      <Button onClick={handleSubmit}>SUBMIT</Button>
+      <Button
+        onClick={handleSubmit}
+        variant="contained"
+        sx={{ marginLeft: "20px", backgroundColor: "#4cceac" }}
+      >
+        SUBMIT
+      </Button>
       <div>
         <Dialog
           open={showSeeEmail}
@@ -206,7 +211,7 @@ const NewPart = () => {
         >
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-              Verification link has been sent to your email
+              Your part has been sent for verification. Please check your email
             </DialogContentText>
           </DialogContent>
           <DialogActions>

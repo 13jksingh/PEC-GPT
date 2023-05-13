@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const jwt = require("jsonwebtoken");
 const connection = require("./config/db.config").connection;
 const JWT_SECRET = require("./config/db.config").JWT_SECRET;
@@ -24,37 +25,36 @@ app.use(express.json());
 
 app.set("jwt-secret", JWT_SECRET);
 
-
 const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1];
-  
-    if (token == null) {
-      return res.sendStatus(401);
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (token == null) {
+    return res.sendStatus(401);
+  }
+
+  jwt.verify(token, app.get("jwt-secret"), (err, payload) => {
+    if (err) {
+      return res.sendStatus(403);
     }
-  
-    jwt.verify(token, app.get("jwt-secret"), (err, payload) => {
-      if (err) {
-        return res.sendStatus(403);
-      }
-      const email = payload.email;
-      connection.query(
-        "SELECT * FROM userTable WHERE email = ?",
-        [email],
-        (error, results, fields) => {
-          if (error) {
-            console.error(error);
-            return res.sendStatus(500);
-          }
-          if (results.length === 0) {
-            return res.sendStatus(401);
-          }
-          req.user = results[0];
-          next();
+    const email = payload.email;
+    connection.query(
+      "SELECT * FROM userTable WHERE email = ?",
+      [email],
+      (error, results, fields) => {
+        if (error) {
+          console.error(error);
+          return res.sendStatus(500);
         }
-      );
-    });
-  };
+        if (results.length === 0) {
+          return res.sendStatus(401);
+        }
+        req.user = results[0];
+        next();
+      }
+    );
+  });
+};
 
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/metrics", dataRoute);
@@ -64,18 +64,31 @@ app.use("/api/v1/settings", authenticateToken, settingsRoute);
 app.get("/complete/:dataID/:token", dataController.complete);
 
 app.use(
-    "/api/v1/data",
-    authenticateToken,
-    (req, res, next) => {
-      if (req.user.verified) {
-        next();
-      } else {
-        res.status(401).send("Email not verified.");
+  "/api/v1/data",
+  authenticateToken,
+  (req, res, next) => {
+    if (req.user.verified) {
+      next();
+    } else {
+      res.status(401).send("Email not verified.");
+    }
+  },
+  dataRoute
+);
+
+//not to be touched below this
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "../frontend/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
       }
-    },
-    dataRoute
+    }
   );
-  
+});
 
 const port = 8000;
 app.listen(port, () => {

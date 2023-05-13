@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const usePost = (token) => {
+const usePost = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -15,8 +15,8 @@ const usePost = (token) => {
         headers: {
           Accept: "application/json ,text/plain,*/*",
           "Content-type": "application/json",
-          Authentication: token ? "Bearer " + token : null,
         },
+        body: JSON.stringify(req.data),
       }).then((res) => res.json());
 
       if (!response.ok) {
@@ -29,7 +29,7 @@ const usePost = (token) => {
       setError("Something went wrong!");
     }
     setIsLoading(false);
-  }, [token]);
+  }, []);
 
   return {
     isLoading,
