@@ -5,7 +5,6 @@ import { tokens } from "../theme2";
 const BarChart2 = ({ data }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  console.log(data);
 
   return (
     <ResponsiveBar

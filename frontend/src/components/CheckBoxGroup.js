@@ -10,17 +10,20 @@ import { useTheme } from "@mui/material";
 
 const CheckBoxGroup = ({ state, setState, label, errorText, row, unique }) => {
   const theme = useTheme();
+  const [error, setError] = useState(null);
+
+  const items = state;
 
   const handleChange = (event) => {
+    unique
+      ? setError([items].filter((v) => v.length !== 1))
+      : setError([items].filter((v) => v.length === 0));
+
     setState({
       ...state,
       [event.target.name]: event.target.checked,
     });
   };
-
-  const items = state;
-  let error = [items].filter((v) => v).length === 0;
-  if (unique) error = [items].filter((v) => v).length!==1;
 
   return (
     <FormControl

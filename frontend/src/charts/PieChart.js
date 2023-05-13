@@ -5,8 +5,7 @@ import { useTheme } from "@mui/material";
 const PieChart = ({ data }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  console.log(data);
-
+  
   return (
     <ResponsivePie
       data={data}
