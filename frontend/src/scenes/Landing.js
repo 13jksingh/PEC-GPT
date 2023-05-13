@@ -25,8 +25,9 @@ const Landing = () => {
         console.log();
         setPieChart1((i) => data.MaterialCompostion);
         setPieChart2((i) => data.Condition);
-        setBarChart2((i) => data.performanceMetric);
+        
         setBarChart1((i) => data.statusBar);
+        setBarChart2((i) => data.performanceMetric);
 
         // setBarChart((i) => data.statusBar);
         setLoading(false);
