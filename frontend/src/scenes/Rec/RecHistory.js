@@ -22,18 +22,21 @@ const RecHistory = () => {
 
   //setup useGet hook
   const { isLoading, error, sendRequest } = useGet(
-    `${process.env.REACT_APP_BACKEND}/api/v1/dat`
+    `${process.env.REACT_APP_BACKEND}/api/v1/data/history`
   );
 
   //useEffect for making the fetch call to the backend
   useEffect(() => {
     const handleGet = (newdata) => {
-      console.log(newdata);
-      setData((i) => newdata.data);
+      let temp = [];
+      if (status.requested) temp = [...temp, newdata.requested];
+      if (status.sold) temp = [...temp, newdata.sold];
+      if (status.bought) temp = [...temp, newdata.bought];
+      setData((i) => temp);
     };
 
     sendRequest(handleGet);
-  }, [sendRequest]);
+  }, [sendRequest, status.bought, status.requested, status.sold]);
 
   //close sidebar on loading this page
   const { collapseSidebar } = useProSidebar();
