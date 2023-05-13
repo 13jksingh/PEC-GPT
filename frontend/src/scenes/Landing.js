@@ -6,7 +6,8 @@ import PartCard from "../components/PartCard";
 import FlexBetween from "../components/FlexBetween";
 import PieChart from "../charts/PieChart";
 import Loading from "./Loading";
-import BarChart from "../charts/BarChart";
+import BarChart1 from "../charts/BarChart1";
+import BarChart2 from "../charts/BarChart2";
 
 const Landing = () => {
   const [pieChart1, setPieChart1] = useState([]);
