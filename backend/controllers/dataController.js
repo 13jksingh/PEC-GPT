@@ -176,10 +176,71 @@ exports.createData = (req, res) => {
       });
     });
   };
+
   
+  exports.history = (req, res) => {
+    const email = req.user.email;
+    const userQuery = `SELECT userId FROM userTable WHERE email = ?`;
   
-  
-  
-  
+    connection.query(userQuery, [email], (error, userResults) => {
+      if (error) {
+        console.log("error: ", error);
+        res.status(500).send({
+          message: "Error retrieving user ID",
+        });
+      } else {
+        const userId = userResults[0].userId;
+        const statusQuery = `SELECT dataID, bought, sold, requested FROM status WHERE userId = ?`;
+        connection.query(statusQuery, [userId], (error, statusResults) => {
+            if (error) {
+              console.log("error: ", error);
+              res.status(500).send({
+                message: "Error retrieving status data",
+              });
+            } else {
+              let history = {
+                bought: [],
+                sold: [],
+                requested: [],
+              };
+              let promises = [];
+              statusResults.forEach((row) => {
+                const dataID = row.dataID;
+                let promise = new Promise((resolve, reject) => {
+                  Data.findById(dataID, (err, data) => {
+                    if (err) {
+                      console.log("error: ", err);
+                      reject(err);
+                    } else {
+                      if (row.bought ==="1") {
+                        history.bought.push(data);
+                      }
+                      if (row.sold === "1") {
+                        history.sold.push(data);
+                      }
+                      if (row.requested === "1") {
+                        history.requested.push(data);
+                      }
+                      resolve();
+                    }
+                  });
+                });
+                promises.push(promise);
+              });
+              Promise.all(promises)
+                .then(() => {
+                  res.send(history);
+                })
+                .catch((err) => {
+                  res.status(500).send({
+                    message: `Error retrieving Data: ${err}`,
+                  });
+                });
+            }
+          });
+          
+      }
+    });
+  };
   
   
