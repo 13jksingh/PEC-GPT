@@ -82,116 +82,10 @@ const ManuCatalog = () => {
   const [Ageyears, setAgeyears] = useState([0, 200]);
   const handleAgeyearsChange = (event, val) => setAgeyears(val);
 
-  const [NewPartsCarbonFootprintkgCO2e, setNewPartsCarbonFootprintkgCO2e] =
-    useState([0, 200]);
-  const handleNewPartsCarbonFootprintkgCO2eChange = (event, val) =>
-    setNewPartsCarbonFootprintkgCO2e(val);
-
-  const [
-    RecycledPartsCarbonFootprintkgCO2e,
-    setRecycledPartsCarbonFootprintkgCO2e,
-  ] = useState([0, 200]);
-  const handleRecycledPartsCarbonFootprintkgCO2eChange = (event, val) =>
-    setRecycledPartsCarbonFootprintkgCO2e(val);
-
-  const [WaterUsageNewPartsliters, setWaterUsageNewPartsliters] = useState([
-    0, 200,
-  ]);
-  const handleWaterUsageNewPartslitersChange = (event, val) =>
-    setWaterUsageNewPartsliters(val);
-
-  const [WaterUsageRecycledPartsliters, setWaterUsageRecycledPartsliters] =
-    useState([0, 200]);
-  const handleWaterUsageRecycledPartslitersChange = (event, val) =>
-    setWaterUsageRecycledPartsliters(val);
-
-  const [LandfillWasteNewPartskg, setLandfillWasteNewPartskg] = useState([
-    0, 200,
-  ]);
-  const handleLandfillWasteNewPartskgChange = (event, val) =>
-    setLandfillWasteNewPartskg(val);
-
-  const [LandfillWasteRecycledPartskg, setLandfillWasteRecycledPartskg] =
-    useState([0, 200]);
-  const handleLandfillWasteRecycledPartskgChange = (event, val) =>
-    setLandfillWasteRecycledPartskg(val);
-
-  const [EnergyConsumptionNewPartskWh, setEnergyConsumptionNewPartskWh] =
-    useState([0, 200]);
-  const handleEnergyConsumptionNewPartskWhChange = (event, val) =>
-    setEnergyConsumptionNewPartskWh(val);
-
-  const [
-    EnergyConsumptionRecycledPartskWh,
-    setEnergyConsumptionRecycledPartskWh,
-  ] = useState([0, 200]);
-  const handleEnergyConsumptionRecycledPartskWhChange = (event, val) =>
-    setEnergyConsumptionRecycledPartskWh(val);
-
-  const [RecyclingRate, setRecyclingRate] = useState([0, 200]);
-  const handleRecyclingRateChange = (event, val) => setRecyclingRate(val);
-
-  const [ToxicityScoreNewParts, setToxicityScoreNewParts] = useState([0, 200]);
-  const handleToxicityScoreNewPartsChange = (event, val) =>
-    setToxicityScoreNewParts(val);
-
-  const [ToxicityScoreRecycledParts, setToxicityScoreRecycledParts] = useState([
-    0, 200,
-  ]);
-  const handleToxicityScoreRecycledPartsChange = (event, val) =>
-    setToxicityScoreRecycledParts(val);
-
-  const [LifeCycleAssessment, setLifeCycleAssessment] = useState([0, 200]);
-  const handleLifeCycleAssessmentChange = (event, val) =>
-    setLifeCycleAssessment(val);
-
-  const [RenewableMaterialContent, setRenewableMaterialContent] = useState([
-    0, 200,
-  ]);
-  const handleRenewableMaterialContentChange = (event, val) =>
-    setRenewableMaterialContent(val);
-
-  const [CarbonFootprintSavedkgCO2e, setCarbonFootprintSavedkgCO2e] = useState([
-    0, 200,
-  ]);
-  const handleCarbonFootprintSavedkgCO2eChange = (event, val) =>
-    setCarbonFootprintSavedkgCO2e(val);
-
-  const [WaterUsageSavedliters, setWaterUsageSavedliters] = useState([0, 200]);
-  const handleWaterUsageSavedlitersChange = (event, val) =>
-    setWaterUsageSavedliters(val);
-
-  const [LandfillWasteSavedkg, setLandfillWasteSavedkg] = useState([0, 200]);
-  const handleLandfillWasteSavedkgChange = (event, val) =>
-    setLandfillWasteSavedkg(val);
-
-  const [EnergyConsumptionSavedkWh, setEnergyConsumptionSavedkWh] = useState([
-    0, 200,
-  ]);
-  const handleEnergyConsumptionSavedkWhChange = (event, val) =>
-    setEnergyConsumptionSavedkWh(val);
-
-  const [ToxicityScoreDifference, setToxicityScoreDifference] = useState([
-    0, 200,
-  ]);
-  const handleToxicityScoreDifferenceChange = (event, val) =>
-    setToxicityScoreDifference(val);
-
-  const [RemanufacturingPotential, setRemanufacturingPotential] = useState([
-    0, 200,
-  ]);
-  const handleRemanufacturingPotentialChange = (event, val) =>
-    setRemanufacturingPotential(val);
-
-  const [LifeCycleAssessmentScore, setLifeCycleAssessmentScore] = useState([
-    0, 200,
-  ]);
-  const handleLifeCycleAssessmentScoreChange = (event, val) =>
-    setLifeCycleAssessmentScore(val);
-
+  const [page, setPage] = useState(1);
   //setup useGet hook
   const { isLoading, error, sendRequest } = useGet(
-    `${process.env.REACT_APP_BACKEND}/api/v1/data`
+    `${process.env.REACT_APP_BACKEND}/api/v1/data?page=${page}`
   );
   const mobile = useMediaQuery("(max-width:600px)");
 
@@ -280,131 +174,25 @@ const ManuCatalog = () => {
           handleSliderChange={handleAgeyearsChange}
           label="Ageyears"
         />
-
-        <Slider
-          slider={NewPartsCarbonFootprintkgCO2e}
-          handleSliderChange={handleNewPartsCarbonFootprintkgCO2eChange}
-          label="NewPartsCarbonFootprintkgCO2e"
-        />
-
-        <Slider
-          slider={RecycledPartsCarbonFootprintkgCO2e}
-          handleSliderChange={handleRecycledPartsCarbonFootprintkgCO2eChange}
-          label="RecycledPartsCarbonFootprintkgCO2e"
-        />
-
-        <Slider
-          slider={WaterUsageNewPartsliters}
-          handleSliderChange={handleWaterUsageNewPartslitersChange}
-          label="WaterUsageNewPartsliters"
-        />
-
-        <Slider
-          slider={WaterUsageRecycledPartsliters}
-          handleSliderChange={handleWaterUsageRecycledPartslitersChange}
-          label="WaterUsageRecycledPartsliters"
-        />
-
-        <Slider
-          slider={LandfillWasteNewPartskg}
-          handleSliderChange={handleLandfillWasteNewPartskgChange}
-          label="LandfillWasteNewPartskg"
-        />
-
-        <Slider
-          slider={LandfillWasteRecycledPartskg}
-          handleSliderChange={handleLandfillWasteRecycledPartskgChange}
-          label="LandfillWasteRecycledPartskg"
-        />
-
-        <Slider
-          slider={EnergyConsumptionNewPartskWh}
-          handleSliderChange={handleEnergyConsumptionNewPartskWhChange}
-          label="EnergyConsumptionNewPartskWh"
-        />
-
-        <Slider
-          slider={EnergyConsumptionRecycledPartskWh}
-          handleSliderChange={handleEnergyConsumptionRecycledPartskWhChange}
-          label="EnergyConsumptionRecycledPartskWh"
-        />
-
-        <Slider
-          slider={RecyclingRate}
-          handleSliderChange={handleRecyclingRateChange}
-          label="RecyclingRate"
-        />
-
-        <Slider
-          slider={ToxicityScoreNewParts}
-          handleSliderChange={handleToxicityScoreNewPartsChange}
-          label="ToxicityScoreNewParts"
-        />
-
-        <Slider
-          slider={ToxicityScoreRecycledParts}
-          handleSliderChange={handleToxicityScoreRecycledPartsChange}
-          label="ToxicityScoreRecycledParts"
-        />
-
-        <Slider
-          slider={LifeCycleAssessment}
-          handleSliderChange={handleLifeCycleAssessmentChange}
-          label="LifeCycleAssessment"
-        />
-
-        <Slider
-          slider={RenewableMaterialContent}
-          handleSliderChange={handleRenewableMaterialContentChange}
-          label="RenewableMaterialContent"
-        />
-
-        <Slider
-          slider={CarbonFootprintSavedkgCO2e}
-          handleSliderChange={handleCarbonFootprintSavedkgCO2eChange}
-          label="CarbonFootprintSavedkgCO2e"
-        />
-
-        <Slider
-          slider={WaterUsageSavedliters}
-          handleSliderChange={handleWaterUsageSavedlitersChange}
-          label="WaterUsageSavedliters"
-        />
-
-        <Slider
-          slider={LandfillWasteSavedkg}
-          handleSliderChange={handleLandfillWasteSavedkgChange}
-          label="LandfillWasteSavedkg"
-        />
-
-        <Slider
-          slider={EnergyConsumptionSavedkWh}
-          handleSliderChange={handleEnergyConsumptionSavedkWhChange}
-          label="EnergyConsumptionSavedkWh"
-        />
-
-        <Slider
-          slider={ToxicityScoreDifference}
-          handleSliderChange={handleToxicityScoreDifferenceChange}
-          label="ToxicityScoreDifference"
-        />
-
-        <Slider
-          slider={RemanufacturingPotential}
-          handleSliderChange={handleRemanufacturingPotentialChange}
-          label="RemanufacturingPotential"
-        />
-
-        <Slider
-          slider={LifeCycleAssessmentScore}
-          handleSliderChange={handleLifeCycleAssessmentScoreChange}
-          label="LifeCycleAssessmentScore"
-        />
       </Box>
-      <FlexBetween flexDirection="column" marginRight="1rem" width="100%" marginBottom="2rem">
-        {data.map((item,indx) => (
+      <FlexBetween
+        flexDirection="column"
+        marginRight="1rem"
+        width="100%"
+        marginBottom="2rem"
+      >
+        {data.map((item, indx) => (
           <PartCard data={item} key={indx} />
         ))}
+        <FlexBetween sx={{ marginTop: "10px" }}>
+          {page > 1 && (
+            <span onClick={() => setPage((i) => i - 1)}>PREV</span>
+          )}
+          <Typography style={{ marginLeft: "5px", marginRight: "5px" }}>
+            -
+          </Typography>
+          <span onClick={() => setPage((i) => i + 1)}>NEXT</span>
+        </FlexBetween>
       </FlexBetween>
     </Box>
   );

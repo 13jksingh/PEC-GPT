@@ -19,7 +19,7 @@ const Landing = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8000/api/v1/metrics/data`)
+    fetch(`${process.env.REACT_APP_BACKEND}/api/v1/metrics/data`)
       .then((response) => response.json())
       .then((data) => {
         console.log();
@@ -54,12 +54,12 @@ const Landing = () => {
 
         <Box mt="200px" mb="200px" height="75vh">
           <h1>BARCHART</h1>
-          {barChart1 !== [] && <BarChart data={barChart1} />}
+          {barChart1 !== [] && <BarChart1 data={barChart1} />}
         </Box>
 
         <Box mt="200px" mb="200px" height="75vh">
           <h1>BARCHART</h1>
-          {barChart2 !== [] && <BarChart data={barChart2} />}
+          {barChart2 !== [] && <BarChart2 data={barChart2} />}
         </Box>
       </Box>
     </>
