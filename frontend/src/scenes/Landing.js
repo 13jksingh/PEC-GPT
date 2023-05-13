@@ -22,11 +22,11 @@ const Landing = () => {
     fetch(`${process.env.REACT_APP_BACKEND}/api/v1/metrics/data`)
       .then((response) => response.json())
       .then((data) => {
-        console.log();
+        console.log(data);
         setPieChart1((i) => data.Material_compostion);
         setPieChart2((i) => data.Condition);
         setBarChart1((i) => data.performance_metric);
-        setBarChart1((i) => data.statusBar);
+        setBarChart2((i) => data.statusBar);
 
         // setBarChart((i) => data.statusBar);
         setLoading(false);
@@ -43,22 +43,21 @@ const Landing = () => {
     <>
       <Box>
         <Box m="20px">
-          <h1>PIECHART 1</h1>
+          <h1>Overview of recyclend and repurposed materials</h1>
           {pieChart1 !== [] && <PieChart data={pieChart1} />}
         </Box>
 
         <Box m="20px" height="75vh">
-          <h1>PIECHART 2</h1>
           {pieChart2 !== [] && <PieChart data={pieChart2} />}
         </Box>
 
         <Box mt="200px" mb="200px" height="75vh">
-          <h1>BARCHART</h1>
+          <h1>Enivronmental Impact Metrics</h1>
           {barChart1 !== [] && <BarChart1 data={barChart1} />}
         </Box>
 
         <Box mt="200px" mb="200px" height="75vh">
-          <h1>BARCHART</h1>
+          <h1>Performance Metric</h1>
           {barChart2 !== [] && <BarChart2 data={barChart2} />}
         </Box>
       </Box>
