@@ -39,17 +39,17 @@ exports.create = (req, res) => {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: 'anurag.jindal@therrgroup.in',
-          pass: 'arjtygnqgcsrppof',
+          user: 'aero.connect0@gmail.com',
+          pass: 'cfumzzgfzzqtgtpl',
           authMethod: 'PLAIN'
         },
       });
 
       const mailOptions = {
-        from: 'anurag.jindal@therrgroup.in',
+        from: 'aero.connect0@gmail.com',
         to: user.email,
         subject: "Verify your email address",
-        html: `<p>Thank you for registering. Please click on the following link to verify your email address:</p><p>http://localhost:8000/verify-email/${token}</p>`,
+        html: `<p>Thank you for registering. Please click on the following link to verify your email address:</p><p>http://65.0.89.63/verify-email/${token}</p>`,
       };
 
       transporter.sendMail(mailOptions, (err, info) => {

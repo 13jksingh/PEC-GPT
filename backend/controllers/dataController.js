@@ -54,14 +54,14 @@ exports.request = (req, res) => {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "anurag.jindal@therrgroup.in",
-          pass: "arjtygnqgcsrppof",
+          user: "aero.connect0@gmail.com",
+          pass: "cfumzzgfzzqtgtpl",
           authMethod: "PLAIN",
         },
       });
 
       const mailOptions = {
-        from: "anurag.jindal@therrgroup.in",
+        from: "aero.connect0@gmail.com",
         to: email,
         subject: "Data requested on AeroConnect",
         html:
@@ -72,7 +72,7 @@ exports.request = (req, res) => {
           `<li>Material Composition: ${data["Material Composition"]}</li>` +
           `<li>Age (years): ${data["Age (years)"]}</li>` +
           "</ul>" +
-          `<p>Please click on the following link to verify your email address:</p><p>http://localhost:8000/complete/${dataID}/${token}</p>`,
+          `<p>Please click on the following link to verify your email address:</p><p>http://65.0.89.63/complete/${dataID}/${token}</p>`,
       };
 
       transporter.sendMail(mailOptions, (err, info) => {
@@ -158,14 +158,14 @@ exports.createData = (req, res) => {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "anurag.jindal@therrgroup.in",
-          pass: "arjtygnqgcsrppof",
+          user: "aero.connect0@gmail.com",
+          pass: "cfumzzgfzzqtgtpl",
           authMethod: "PLAIN",
         },
       });
 
       const mailOptions = {
-        from: "anurag.jindal@therrgroup.in",
+        from: "aero.connect0@gmail.com",
         to: email,
         subject: "Data posted on AeroConnect",
         html:
