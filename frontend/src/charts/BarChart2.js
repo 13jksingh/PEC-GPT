@@ -95,7 +95,7 @@ const BarChart2 = ({ data }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "Status",
+        legend: "Manufacturer",
         legendPosition: "middle",
         legendOffset: 45,
       }}

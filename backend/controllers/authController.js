@@ -41,7 +41,7 @@ exports.login = (req, res) => {
                 { id: data.id, email: data.email },
                 JWT_SECRET,
                 {
-                  expiresIn: "120h",
+                  expiresIn: "1h",
                 }
               );
               console.log(data);

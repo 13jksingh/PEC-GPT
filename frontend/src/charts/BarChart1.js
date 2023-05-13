@@ -43,7 +43,7 @@ const BarChart1 = ({ data }) => {
         "Landfill Waste Saved (kg)",
         "Energy Consumption Saved (kWh)",
       ]}
-      indexBy="Savage"
+      indexBy="savage"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
@@ -93,7 +93,7 @@ const BarChart1 = ({ data }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "Savage",
+        legend: "savage",
         legendPosition: "middle",
         legendOffset: 45,
       }}
@@ -101,7 +101,7 @@ const BarChart1 = ({ data }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "no. of orders",
+        legend: "Value",
         legendPosition: "middle",
         legendOffset: -40,
       }}
@@ -138,7 +138,7 @@ const BarChart1 = ({ data }) => {
       role="application"
       ariaLabel="Nivo bar chart demo"
       barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in Savage: " + e.indexValue;
+        return e.id + ": " + e.formattedValue + " in savage: " + e.indexValue;
       }}
     />
   );

@@ -52,12 +52,12 @@ const Landing = () => {
           {pieChart2 !== [] && <PieChart data={pieChart2} />}
         </Box>
 
-        <Box mt="200px" mb="200px" height="75vh">
+        <Box mt="20px" mb="20px" height="55vh">
           <h1>Enivronmental Impact Metrics</h1>
           {barChart1 !== [] && <BarChart1 data={barChart1} />}
         </Box>
 
-        <Box mt="200px" mb="200px" height="75vh">
+        <Box mt="20px" mb="20px" height="55vh">
           <h1>Performance Metric</h1>
           {barChart2 !== [] && <BarChart2 data={barChart2} />}
         </Box>

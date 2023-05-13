@@ -72,12 +72,12 @@ class Data {
       };
       let mockBar = {};
       let performance_metric = {
-        "Boeing":0,
-        "Embraer":0,
-        "Bombardier":0,
-        "Cessna":0,
-        "Gulfstream":0,
-        "Airbus":0
+        Boeing:0,
+        Embraer:0,
+        Bombardier:0,
+        Cessna:0,
+        Gulfstream:0,
+        Airbus:0
       }
       let mock_performance = [];
       res.forEach(i => {
