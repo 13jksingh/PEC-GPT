@@ -64,7 +64,7 @@ const App = () => {
         >
           <Route path="" element={<ManuDashboard />} />
           <Route path="catalog" element={<ManuCatalaog />} />
-          <Route path="part" element={<PartPage />} />
+          <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<ManuHistory />} />
           <Route path="addnew" element={<NewPart />} />
           <Route path="settings" element={<Settings/>}/>
@@ -81,7 +81,7 @@ const App = () => {
         >
           <Route path="" element={<RecDashboard />} />
           <Route path="catalog" element={<RecCatalog />} />
-          <Route path="part" element={<PartPage />} />
+          <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<RecHistory />} />
           <Route path="addnew" element={<NewPart />} />
           <Route path="settings" element={<Settings/>}/>
@@ -98,7 +98,7 @@ const App = () => {
         >
           <Route path="" element={<AeroDashboard />} />
           <Route path="catalog" element={<AeroCatalog />} />
-          <Route path="part" element={<PartPage />} />
+          <Route path="catalog/part" element={<PartPage />} />
           <Route path="history" element={<AeroHistory />} />
           <Route path="addnew" element={<NewPart />} />
           <Route path="settings" element={<Settings/>}/>

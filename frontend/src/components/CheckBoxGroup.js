@@ -8,7 +8,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 import { useTheme } from "@mui/material";
 
-const CheckBoxGroup = ({ state, setState, label, errorText }) => {
+const CheckBoxGroup = ({ state, setState, label, errorText, row, unique }) => {
   const theme = useTheme();
 
   const handleChange = (event) => {
@@ -19,7 +19,8 @@ const CheckBoxGroup = ({ state, setState, label, errorText }) => {
   };
 
   const items = state;
-  const error = [items].filter((v) => v).length === 0;
+  let error = [items].filter((v) => v).length === 0;
+  if (unique) error = [items].filter((v) => v).length!==1;
 
   return (
     <FormControl
@@ -34,7 +35,9 @@ const CheckBoxGroup = ({ state, setState, label, errorText }) => {
       >
         {label}
       </FormLabel>
-      <FormGroup>
+      <FormGroup
+        sx={{ display: "flex", flexDirection: row ? "row" : "column" }}
+      >
         {Object.keys(items).map((k, indx) => (
           <FormControlLabel
             key={indx}

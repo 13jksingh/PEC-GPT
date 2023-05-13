@@ -257,5 +257,3 @@ exports.createData = (req, res) => {
       }
     });
   };
-  
-  
